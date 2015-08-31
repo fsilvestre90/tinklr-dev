@@ -14,7 +14,6 @@
 			$this->address = $address;
 			$this->lat = $lat;
 			$this->lng = $lng;
-			$this->zipcode = $zipcode;
 			$this->type = $type;
 			$this->id = $id;
 		}
@@ -57,16 +56,6 @@
 		function setLng($new_lng)
 		{
 			$this->lng = $new_lng;
-		}
-		
-		function getZipcode()
-		{
-			return $this->zipcode;
-		}
-		
-		function setZipcode($new_zipcode)
-		{
-			$this->zipcode = $new_zipcode;	
 		}
 		
 		function getType()
