@@ -2,6 +2,7 @@
 
     // DEPENDENCIES
         require_once __DIR__."/../vendor/autoload.php"; // frameworks
+        require_once __DIR__."/../src/Marker.php";
 
     //ENABLE HTTP PARAMETER OVERRIDE 
         use Symfony\Component\HttpFoundation\Request;
