@@ -22,6 +22,7 @@ CREATE TABLE `bathrooms` (
   `changing_table` BINARY NULL DEFAULT NULL,
   `public` BINARY NULL DEFAULT NULL,
   `single_toilet` BINARY NULL DEFAULT NULL,
+  `marker_id` INTEGER NULL DEFAULT NULL
   PRIMARY KEY (`id`)
 );
 
