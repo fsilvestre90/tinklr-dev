@@ -67,7 +67,7 @@
 		
 		function setZipcode($new_zipcode)
 		{
-			$this->zipcode = $new_zipcaddress;	
+			$this->zipcode = $new_zipcode;	
 		}
 		
 		function getType()
@@ -84,6 +84,19 @@
 		{
 			return $this->id;
 		}
+		
+		function save()
+        {
+            $GLOBALS['DB']->exec("INSERT INTO bathrooms (name, address, city, state) VALUES ('{$this->getName()}',
+             '{$this->getAddress()}',
+             '{$this->getCity()}',
+             '{$this->getState()}',
+			 '{$this->getZipcode}',
+			 '{$this->getType}')"
+             );
+            
+			$this->id = $GLOBALS['DB']->lastInsertId();
+        }
 		
 		
 	}	
