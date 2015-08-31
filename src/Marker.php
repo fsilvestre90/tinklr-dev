@@ -75,15 +75,24 @@
 		
 		function save()
         {
-            $GLOBALS['DB']->exec("INSERT INTO bathrooms (name, address, lat, lng) VALUES ('{$this->getName()}',
+            $GLOBALS['DB']->exec("INSERT INTO markers (name, address, lat, lng, type) VALUES ('{$this->getName()}',
              '{$this->getAddress()}',
-             '{$this->getlat()}',
-             '{$this->getlng()}',
-			 '{$this->getZipcode}',
+              {$this->getlat()},
+              {$this->getlng()},
 			 '{$this->getType}')"
              );
             
 			$this->id = $GLOBALS['DB']->lastInsertId();
+        }
+		
+	    function update($new_name, $new_address, $new_lat, $new_lng, $new_type)
+        {
+            $GLOBALS['DB']->exec("UPDATE markers SET name = '{$new_name}', address = '{$new_address}', lat = {$new_lat}, lng = {$new_lng}, type = '{$new_type}' WHERE id = $id;");
+            $this->setName($new_name);
+            $this->setAddress($new_address);
+            $this->setLat($new_lat);
+            $this->setLng($new_lng);
+			$this->setType($new_type);
         }
 		
 		function delete()
@@ -103,10 +112,9 @@
 				$address = $marker['address'];
 				$lat = $marker['lat'];
 				$lng = $marker['lng'];
-				$zipcode = $marker['zipcode'];
 				$type = $marker['type'];
                 $id = $marker['id'];
-                $new_marker = new Marker($name, $address, $lat, $lng, $zipcode, $type, $id);
+                $new_marker = new Marker($name, $address, $lat, $lng, $type, $id);
                 array_push($markers, $new_marker);
             }
             return $markers;
