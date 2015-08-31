@@ -19,7 +19,7 @@ $ composer install
 * Start your local host in the web folder:
 ```console
 $ php -S localhost:8000
-
+```
 ## Technologies Used
 
 Backend: PHP, Silex, Javascript, XML
