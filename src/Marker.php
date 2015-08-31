@@ -3,18 +3,17 @@
 	{
 		private $name;
 		private $address;
-		private $city;
-		private $state;
-		private $zipcode;
+		private $lat;
+		private $lng;
 		private $type;
 		private $id;
 		
-		function __construct($name, $address, $city, $state, $zipcode, $type, $id)
+		function __construct($name, $address, $lat, $lng, $zipcode, $type, $id)
 		{
 			$this->name = $name;
 			$this->address = $address;
-			$this->city = $city;
-			$this->state = $state;
+			$this->lat = $lat;
+			$this->lng = $lng;
 			$this->zipcode = $zipcode;
 			$this->type = $type;
 			$this->id = $id;
@@ -40,24 +39,24 @@
 			$this->address = $new_address;
 		}
 		
-		function getCity()
+		function getLat()
 		{
-			return $this->city;
+			return $this->lat;
 		}
 		
-		function setCity($new_city)
+		function setLat($new_lat)
 		{
-			$this->city = $new_city;
+			$this->lat = $new_lat;
 		}
 		
-		function getState()
+		function getLng()
 		{
-			return $this->state;
+			return $this->lng;
 		}
 		
-		function setState($new_state)
+		function setLng($new_lng)
 		{
-			$this->state = $new_state;
+			$this->lng = $new_lng;
 		}
 		
 		function getZipcode()
@@ -87,10 +86,10 @@
 		
 		function save()
         {
-            $GLOBALS['DB']->exec("INSERT INTO bathrooms (name, address, city, state) VALUES ('{$this->getName()}',
+            $GLOBALS['DB']->exec("INSERT INTO bathrooms (name, address, lat, lng) VALUES ('{$this->getName()}',
              '{$this->getAddress()}',
-             '{$this->getCity()}',
-             '{$this->getState()}',
+             '{$this->getlat()}',
+             '{$this->getlng()}',
 			 '{$this->getZipcode}',
 			 '{$this->getType}')"
              );
@@ -113,12 +112,12 @@
             foreach($returned_markers as $marker) {
                 $name = $marker['name'];
 				$address = $marker['address'];
-				$city = $marker['city'];
-				$state = $marker['state'];
+				$lat = $marker['lat'];
+				$lng = $marker['lng'];
 				$zipcode = $marker['zipcode'];
 				$type = $marker['type'];
                 $id = $marker['id'];
-                $new_marker = new Marker($name, $address, $city, $state, $zipcode, $type, $id);
+                $new_marker = new Marker($name, $address, $lat, $lng, $zipcode, $type, $id);
                 array_push($markers, $new_marker);
             }
             return $markers;
