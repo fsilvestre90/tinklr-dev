@@ -124,5 +124,18 @@
             return $markers;
         }
 		
+		static function find($search_id)
+        {
+            $found_marker = null;
+            $markers = Marker::getAll();
+            foreach($markers as $marker) {
+                $marker_id = $marker->getId();
+                if ($marker_id == $search_id) {
+                  $found_marker = $marker;
+                }
+            }
+            return $found_marker;
+        }
+		
 	}	
 ?>
