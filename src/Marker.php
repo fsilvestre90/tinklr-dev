@@ -75,11 +75,10 @@
 		
 		function save()
         {
-            $GLOBALS['DB']->exec("INSERT INTO markers (name, address, lat, lng) VALUES ('{$this->getName()}',
+            $GLOBALS['DB']->exec("INSERT INTO markers (name, address, lat, lng, type) VALUES ('{$this->getName()}',
              '{$this->getAddress()}',
-             '{$this->getlat()}',
-             '{$this->getlng()}',
-			 '{$this->getZipcode}',
+              {$this->getlat()},
+              {$this->getlng()},
 			 '{$this->getType}')"
              );
             
