@@ -7,16 +7,17 @@
 		private $stall;
 		private $handicap;
 		private $changing_table;
+		private $id;
 
-		
 
 		function __construct($gender, $key, $stall, $handicap, $changing_table, $id = null)
 		{
 			$this->gender = $gender;
 			$this->key = $key;
 			$this->stall = $stall;
-			$this->handicap - $handicap;
+			$this->handicap = $handicap;
 			$this->changing_table = $changing_table;
+			$this->id = $id;
 		}
 
 		function getGender()
