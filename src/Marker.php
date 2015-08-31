@@ -86,7 +86,7 @@
 			$this->id = $GLOBALS['DB']->lastInsertId();
         }
 		
-	    function update($new_name, $new_address, $new_lat, $new_lng, $type)
+	    function update($new_name, $new_address, $new_lat, $new_lng, $new_type)
         {
             $GLOBALS['DB']->exec("UPDATE markers SET name = '{$new_name}', address = '{$new_address}', lat = {$new_lat}, lng = {$new_lng}, type = '{$new_type}' WHERE id = $id;");
             $this->setName($new_name);
