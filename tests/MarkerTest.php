@@ -5,7 +5,7 @@
     * @backupStaticAttributes disabled
     */
 
-    AAAAAA
+    AAAAAAaaaa
 
     require_once "src/Marker.php";
 
