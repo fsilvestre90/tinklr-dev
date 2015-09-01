@@ -4,7 +4,7 @@
         require_once __DIR__."/../vendor/autoload.php"; // frameworks
         require_once __DIR__."/../src/Marker.php";
 
-    //ENABLE HTTP PARAMETER OVERRIDE 
+    //ENABLE HTTP PARAMETER OVERRIDE
         use Symfony\Component\HttpFoundation\Request;
         Request::enableHttpMethodParameterOverride();
 
@@ -35,7 +35,13 @@
         // display index webpage
         $app->get('/', function() use ($app) {
 
-            return $app['twig']->render('index.html.twig');
+            return $app['twig']->render('tinklr.html.twig');
+        });
+
+        // display index webpage
+        $app->get('/add_bathroom', function() use ($app) {
+
+            return $app['twig']->render('add_bathroom.html.twig');
         });
 
 

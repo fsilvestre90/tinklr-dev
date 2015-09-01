@@ -15,13 +15,10 @@ DROP TABLE IF EXISTS `bathrooms`;
 CREATE TABLE `bathrooms` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
   `handicap` BINARY NULL DEFAULT NULL,
-  `toilet_count` INTEGER NULL DEFAULT NULL,
   `unisex` BINARY NULL DEFAULT NULL,
-  `stall_count` INTEGER NULL DEFAULT NULL,
   `key_required` BINARY NULL DEFAULT NULL,
   `changing_table` BINARY NULL DEFAULT NULL,
   `public` BINARY NULL DEFAULT NULL,
-  `single_toilet` BINARY NULL DEFAULT NULL,
   `marker_id` INTEGER NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
