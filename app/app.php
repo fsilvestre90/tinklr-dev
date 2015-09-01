@@ -4,7 +4,7 @@
         require_once __DIR__."/../vendor/autoload.php"; // frameworks
         require_once __DIR__."/../src/Marker.php";
 
-    //ENABLE HTTP PARAMETER OVERRIDE 
+    //ENABLE HTTP PARAMETER OVERRIDE
         use Symfony\Component\HttpFoundation\Request;
         Request::enableHttpMethodParameterOverride();
 
@@ -14,7 +14,7 @@
 
     //INITIALIZE DATABASE CONNECTION
         try{
-            $server = 'mysql:host=localhost:8889;dbname=shoe_store';
+            $server = 'mysql:host=localhost:8889;dbname=tinklr';
             $username = 'root';
             $password = 'root';
             $DB = new PDO($server, $username, $password);
