@@ -38,6 +38,12 @@
             return $app['twig']->render('index.html.twig');
         });
 
+        // display index webpage
+        $app->get('/add_bathroom', function() use ($app) {
+
+            return $app['twig']->render('add_bathroom.html.twig');
+        });
+
 
     return $app;
 
