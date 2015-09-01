@@ -14,7 +14,7 @@
 
     //INITIALIZE DATABASE CONNECTION
         try{
-            $server = 'mysql:host=localhost:8889;dbname=shoe_store';
+            $server = 'mysql:host=localhost:8889;dbname=tinklr';
             $username = 'root';
             $password = 'root';
             $DB = new PDO($server, $username, $password);
@@ -35,7 +35,7 @@
         // display index webpage
         $app->get('/', function() use ($app) {
 
-            return $app['twig']->render('tinklr.html.twig');
+            return $app['twig']->render('index.html.twig');
         });
 
         // display index webpage
