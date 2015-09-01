@@ -51,37 +51,37 @@
             $this->assertEquals("Whiskey Soda Lounge", $result);
         }
 
-        // function test_getAddress()
-        // {
-        //     $name = "Pok Pok";
-        //     $address = "123 abcd street";
-        //     $lat = 34.3435345;
-        //     $lng = 41.8908908;
-        //     $type = "Bar";
+        function test_getAddress()
+        {
+            $name = "Pok Pok";
+            $address = "123 abcd street";
+            $lat = 34.3435345;
+            $lng = 41.8908908;
+            $type = "Bar";
 
-        //     $test_marker = new Marker($name, $address, $lat, $lng, $type);
+            $test_marker = new Marker($name, $address, $lat, $lng, $type);
 
-        //     $result = $test_marker->getAddress();
+            $result = $test_marker->getAddress();
 
-        //     $this->assertEquals($address, $result);
-        // }
+            $this->assertEquals($address, $result);
+        }
 
-        // function test_setAddress()
-        // {
-        //     $name = "Pok Pok";
-        //     $address = "123 abcd street";
-        //     $lat = 34.3435345;
-        //     $lng = 41.8908908;
-        //     $type = "Bar";
+        function test_setAddress()
+        {
+            $name = "Pok Pok";
+            $address = "123 abcd street";
+            $lat = 34.3435345;
+            $lng = 41.8908908;
+            $type = "Bar";
 
-        //     $test_marker = new Marker($name, $address, $lat, $lng, $type);
+            $test_marker = new Marker($name, $address, $lat, $lng, $type);
 
-        //     $test_marker->setAddress("321 fdg street");
+            $test_marker->setAddress("321 fdg street");
 
-        //     $result = $test_marker->getAddress();
+            $result = $test_marker->getAddress();
 
-        //     $this->assertEquals($address, $result);
-        // }
+            $this->assertEquals("321 fdg street", $result);
+        }
 
         // function test_getLat()
         // {
