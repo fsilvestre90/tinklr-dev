@@ -8,7 +8,7 @@
 		private $type;
 		private $id;
 		
-		function __construct($name, $address, $lat, $lng, $zipcode, $type, $id = null)
+		function __construct($name, $address, $lat, $lng, $type, $id=null)
 		{
 			$this->name = $name;
 			$this->address = $address;
