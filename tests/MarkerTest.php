@@ -48,7 +48,7 @@
 
             $result = $test_marker->getName();
 
-            $this->assertEquals($name, $result);
+            $this->assertEquals("Whiskey Soda Lounge", $result);
         }
 
         // function test_getAddress()
