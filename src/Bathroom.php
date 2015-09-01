@@ -2,23 +2,25 @@
 	
 	class Bathroom
 	{
-		private $name;
-		private $gender;
-		private $key;
-		private $stall;
+		// private $name;
+		private $unisex;
+		private $key_required;
+		private $public;
 		private $handicap;
 		private $changing_table;
+		private $marker_id;
 		private $id;
 
 
-		function __construct($name, $gender, $key, $stall, $handicap, $changing_table, $id = null)
+
+		function __construct($unisex, $key_required, $public, $handicap, $changing_table, $marker_id, $id = null)
 		{
-			$this->name = $name;
-			$this->gender = $gender;
-			$this->key = $key;
-			$this->stall = $stall;
+			$this->unisex = $unisex;
+			$this->key_required = $key_required;
+			$this->public = $public;
 			$this->handicap = $handicap;
 			$this->changing_table = $changing_table;
+			$this->marker_id = $marker_id;
 			$this->id = $id;
 		}
 
@@ -32,35 +34,35 @@
 			$this->name = $new_name;
 		}
 
-		function getGender()
+		function getUnisex()
 		{
-			return $this->gender;
+			return $this->unisex;
 		}
 
-		function setGender($new_gender)
+		function setUnisex($new_unisex)
 		{
-			$this->gender = $new_gender;
+			$this->unisex = $new_unisex;
 
 		}
 
-		function getKey()
+		function getKey_required()
 		{
-			return $this->key;
+			return $this->key_required;
 		}
 
-		function setKey($new_key)
+		function setKey_required($new_key_required)
 		{
-			$this->key = $new_key;
+			$this->key_required = $new_key_required;
 		}
 
-		function getStall()
+		function getPublic()
 		{
-			return $this->stall;
+			return $this->public;
 		}
 
-		function setStall($new_stall)
+		function setPublic($new_public)
 		{
-			$this->stall = $new_stall;
+			$this->public = $new_public;
 		}
 
 		function getHandicap()
@@ -88,31 +90,41 @@
 			return $this->id;
 		}
 
+		function getMarkerId()
+		{
+			return $this->marker_id;
+		}
+
+		function setMarkerId($new_marker_id)
+		{
+			$this->marker_id = $new_marker_id;
+		}
+
 		//Database methods
 		function save()
 		{
 			$GLOBALS['DB']->exec(
-				"INSERT INTO bathrooms (name, gender, key, stall, handicap, changing_table, id) VALUES(
-					'{$this->getName()}',
-					'{$this->getGender()}',
-					'{$this->getKey()}',
-					'{$this->getStall()}',
-					'{$this->getHandicap()}',
-					'{$this->getChangingTable()}'
-					'{$this->getId()}'
+				"INSERT INTO bathrooms (unisex, key_required, public, handicap, changing_table, marker_id) VALUES(
+					{$this->getUnisex()},
+					{$this->getKey_required()},
+					{$this->getPublic()},
+					{$this->getHandicap()},
+					{$this->getChangingTable()},
+					{$this->getMarkerId()}
 				);" 
 			);
-			$this->id = $GLOBALS['DB']->lastInsertId();
+            $this->id = $GLOBALS['DB']->lastInsertId();
 		}
 
-		function update_bathroom($new_gender, $new_key, $new_stall, $new_handicap, $new_changing_table)
+		function update_bathroom($new_unisex, $new_key_required, $new_public, $new_handicap, $new_changing_table)
 		{
-			$GLOBALS['DB']->exec("UPDATE bathrooms SET gender = '{$new_gender}', key = '{$new_key}', stall = '{$new_stall}', handicap = '{new_handicap}', changing_table = '{new_changing_table}' WHERE id = $id;");
-			$this->setGender($new_gender);
-			$this->setKey($new_key);
-			$this->setStall($new_stall);
+			$GLOBALS['DB']->exec("UPDATE bathrooms SET unisex = '{$new_unisex}', key_required = '{$new_key_required}', public = '{$new_public}', handicap = '{new_handicap}', changing_table = '{new_changing_table}' WHERE id = $id;");
+			$this->setUnisex($new_unisex);
+			$this->setKey_required($new_key_required);
+			$this->setPublic($new_public);
 			$this->setHandicap($new_handicap);
 			$this->setChangingTable($new_changing_table);
+			$this->setMarkerId($new_marker_id);
 		}
 
 		static function getAll()
@@ -121,13 +133,14 @@
 			$bathrooms =array();
 			foreach($returned_bathrooms as $bathroom)
 			{
-				$gender = $bathroom['gender'];
-				$key = $bathroom['key'];
-				$stall = $bathroom['stall'];
-				$handicap = $bathroom['handicap'];
-				$changing_table = $bathroom['changing_table'];
-				$id = $bathroom['id'];
-				$new_bathroom = new Bathroom($gender, $key, $stall, $handicap, $changing_table, $id);
+				$unisex = (int) $bathroom['unisex'];
+				$key_required = (int) $bathroom['key_required'];
+				$public = (int) $bathroom['public'];
+				$handicap = (int) $bathroom['handicap'];
+				$changing_table = (int) $bathroom['changing_table'];
+				$marker_id = (int) $bathroom['marker_id'];
+				$id = (int) $bathroom['id'];
+				$new_bathroom = new Bathroom($unisex, $key_required, $public, $handicap, $changing_table, $marker_id, $id);
 				array_push($bathrooms, $new_bathroom);
 			}
 			return $bathrooms;
@@ -158,7 +171,7 @@
 			foreach($bathrooms as $bathroom) {
 				$bathroom_id = $bathroom->getId();
 				if ($bathroom_id == $search_id) {
-					$found_bathroom = array($bathroom->getGender, $bathroom->getKey(), $bathroom->getStall(), $bathroom->getHandicap, $bathroom->getStall());
+					$found_bathroom = array($bathroom->getunisex, $bathroom->getkey_required(), $bathroom->getpublic(), $bathroom->getHandicap, $bathroom->getpublic());
 				}
 			}
 			return $found_bathroom;

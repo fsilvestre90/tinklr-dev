@@ -17,21 +17,20 @@
     {
     	protected function tearDown()
     	{
-
+    		Bathroom::deleteAll();
     	}
 
     	function test_getName()
     	{
     		//Arrange
-    		$name = "Starbucks Bathroom";
-    		$gender = "male";
-    		$key = '1';
-    		$stall = '0';
-    		$handicap = '1';
-    		$changing_table = '1';
+    		$unisex = 0;
+    		$key_required = 1;
+    		$public = 0;
+    		$handicap = 1;
+    		$changing_table = 1;
     		$id = 1;
 
-    		$test_bathroom = new Bathroom($name, $gender, $key, $stall, $handicap, $changing_table, $id);
+    		$test_bathroom = new Bathroom($unisex, $key_required, $public, $handicap, $changing_table, $id);
 
     		$result = $test_bathroom->getName();
     		var_dump($test_bathroom);
@@ -43,7 +42,7 @@
     	function test_setName()
     	{
     		$name = "Starbucks Bathroom";
-    		$test_bathroom = new Bathroom($name, $gender, $key, $stall, $handicap, $changing_table, $id);
+    		$test_bathroom = new Bathroom($name, $unisex, $key_required, $public, $handicap, $changing_table, $id);
 
     		$test_bathroom->setName("Target Bathroom");
 
@@ -52,88 +51,98 @@
     		$this->assertEquals("Target Bathroom", $result);
     	}
 
-    	function test_getGender()
+    	function test_getunisex()
     	{
     		//Arrange
-    		$gender = "Male";
+    		$unisex = 0;
+    		$key_required = 1;
+    	 	$public = 0;
+    	 	$handicap = 1;
+    	 	$changing_table = 1;
+    	 	$marker_id = 2;
     		$id = null;
-    		$test_gender = new Bathroom($name, $gender, $key, $stall, $handicap, $changing_table, $id);
+    		$test_bathroom = new Bathroom($unisex, $key_required, $public, $handicap, $changing_table, $marker_id, $id);
 
     		//Act
-    		$result = $test_gender->getGender();
+    		$result = $test_bathroom->getunisex();
 
     		//Assert
-    		$this->assertEquals($gender, $result);
+    		$this->assertEquals($unisex, $result);
     	}
 
-    	function test_setGender()
+    	function test_setunisex()
     	{
     		//Arrange
-    		$gender = "Male";
+    		$unisex = 0;
+    	 	$key_required = 1;
+    	 	$public = 0;
+    	 	$handicap = 1;
+    	 	$changing_table = 1;
+    	 	$marker_id = 1;
     		$id = null;
-    		$test_gender = new Bathroom($name, $gender, $key, $stall, $handicap, $changing_table, $id);
-    		$test_gender->setGender("Female");
+    		$test_unisex = new Bathroom($unisex, $key_required, $public, $handicap, $changing_table, $marker_id, $id);
+    		$test_unisex->setunisex(1);
 
     		//Act
-    		$result = $test_gender->getGender();
+    		$result = $test_unisex->getunisex();
 
     		//Assert
-    		$this->assertEquals("Female", $result);
+    		$this->assertEquals(1, $result);
     	}
 
-    	function test_getKey()
+    	function test_getKey_required()
     	{
     		//Arrange
-    		$key = '1';
+    		$key_required = '1';
     		$id = null;
-    		$test_key = new Bathroom($name, $gender, $key, $stall, $handicap, $changing_table, $id);
+    		$test_key_required = new Bathroom($unisex, $key_required, $public, $handicap, $changing_table, $id);
 
     		//act
-    		$result = $test_key->getKey();
+    		$result = $test_key_required->getkey_required();
 
     		//Assert
-    		$this->assertEquals($key, $result);
+    		$this->assertEquals($key_required, $result);
     	}
 
-    	function test_setKey()
+    	function test_setKey_required()
     	{
     		//Arrange
-    		$key = '01';
+    		$key_required = '01';
     		$id = null;
-    		$test_key = new Bathroom($name, $gender, $key, $stall, $handicap, $changing_table, $id);
+    		$test_key_required = new Bathroom($unisex, $key_required, $public, $handicap, $changing_table, $id);
     		
     		//Act	
-    		$test_key->setKey("10");
-    		$result = $test_key->getKey();
+    		$test_key_required->setkey_required("10");
+    		$result = $test_key_required->getkey_required();
 
     		//Assert
     		$this->assertEquals("10", $result);
     	}
 
-    	function test_getStall()
+    	function test_getpublic()
     	{
     		//Arrange
-    		$stall = '01';
+    		$public = '1';
     		$id = null;
-    		$test_stall = new Bathroom($name, $gender, $key, $stall, $handicap, $changing_table, $id);
+    		$test_public = new Bathroom($unisex, $key_required, $public, $handicap, $changing_table, $id);
 
     		//Act
-    		$result = $test_stall->getStall();
+    		$result = $test_public->getpublic();
 
     		//Assert
-    		$this->assertEquals($stall, $result);
+    		$this->assertEquals($public, $result);
     	}
 
-    	function test_setStall()
+    	function test_setpublic()
     	{
     		//Arrange
-    		$stall = '00';
+    		$public = '00';
     		$id = null;
-    		$test_stall = new Bathroom($name, $gender, $key, $stall, $handicap, $changing_table, $id);
+    		$test_public = new Bathroom($unisex, $key_required, $public, $handicap, $changing_table, $id);
 
     		//Act
-    		$test_stall->setStall('01');
-    		$result = $test_stall->getStall();
+    		$test_public->setpublic('01');
+    		$result = $test_public->getpublic();
 
     		//Assert
     		$this->assertEquals('01', $result);
@@ -144,7 +153,7 @@
     		//Arrange
     		$handicap = '1';
     		$id = null;
-    		$test_handicap = new Bathroom($name, $gender, $key, $stall, $handicap, $changing_table, $id);
+    		$test_handicap = new Bathroom($unisex, $key_required, $public, $handicap, $changing_table, $id);
     		
     		//Act
     		$result = $test_handicap->getHandicap();	
@@ -158,7 +167,7 @@
     		//Arrange
     		$handicap = '00';
     		$id = null;
-    		$test_handicap = new Bathroom($name, $gender, $key, $stall, $handicap, $changing_table, $id);
+    		$test_handicap = new Bathroom($unisex, $key_required, $public, $handicap, $changing_table, $id);
 
     		//Act
     		$test_handicap->setHandicap('1');
@@ -173,7 +182,7 @@
     		//Arrange
     		$changing_table = '1';
     		$id = null;
-    		$test_changingTable = new Bathroom($name, $gender, $key, $stall, $handicap, $changing_table, $id);
+    		$test_changingTable = new Bathroom($unisex, $key_required, $public, $handicap, $changing_table, $marker_id, $id);
 
     		//Act
     		$result = $test_changingTable->getChangingTable();
@@ -185,9 +194,9 @@
     	function test_setChangingTable()
     	{
     		//Arrange
-    		$changing_table = '0';
+    		$changing_table = 0;
     		$id = null;
-    		$test_changingTable = new Bathroom($name, $gender, $key, $stall, $handicap, $changing_table, $id);
+    		$test_changingTable = new Bathroom($unisex, $key_required, $public, $handicap, $changing_table, $marker_id, $id);
 
     		//Act
     		$test_changingTable->setChangingTable('1');
@@ -200,14 +209,14 @@
     	function test_getId()
     	{
     		//Arrange
-    		$name = "Starbucks Bathroom";
-    		$gender = "male";
-    		$key = '01';
-    		$stall = '00';
-    		$handicap = '01';
-    		$changing_table = '01';
+    		$unisex = 0;
+    		$key_required = 1;
+    		$public = 0;
+    		$handicap = 1;
+    		$changing_table = 1;
+    		$marker_id = 2;
     		$id = 1;
-    		$test_bathroom = new Bathroom($name, $gender, $key, $stall, $handicap, $changing_table, $id);
+    		$test_bathroom = new Bathroom($name, $unisex, $key_required, $public, $handicap, $changing_table, $marker_id, $id);
     		$test_bathroom->save();
     		
     		//Act
@@ -216,17 +225,36 @@
     		//Assert
     		$this->assertEquals(true, is_numeric($result));
     	}
+
+    	function test_getMarkerId()
+    	{
+    		//Arrange
+    		$unisex = 0;
+    		$key_required = 1;
+    		$public = 0;
+    		$handicap = 1;
+    		$changing_table = 1;
+    		$marker_id = 2;
+    		$id = 1;
+    		$test_bathroom = new Bathroom($unisex, $key_required, $public, $handicap, $changing_table, $marker_id, $id);
+    		$test_bathroom->save();
+    		
+    		//Act
+    		$result = $test_bathroom->getId();
+    		var_dump($result);
+    		//Assert
+    		$this->assertEquals(true, is_numeric($result));
+    	}
    
     	function test_save()
     	{
-    		$name = "Starbucks Bathroom";
-    		$gender = "male";
-    		$key = '1';
-    		$stall = '0';
-    		$handicap = '1';
-    		$changing_table = '1';
-    		$id = 1;
-    		$test_bathroom = new Bathroom($name, $gender, $key, $stall, $handicap, $changing_table, $id);
+    		$unisex = 0;
+    		$key_required = 1;
+    		$public = 1;
+    		$handicap = 1;
+    		$changing_table = 0;
+    		$marker_id = 2;	
+    		$test_bathroom = new Bathroom($unisex, $key_required, $public, $handicap, $changing_table, $marker_id);
     		$test_bathroom->save();
 
     		$result = Bathroom::getAll();
@@ -234,66 +262,67 @@
     		$this->assertEquals($test_bathroom, $result[0]);
     	}
 
-   //  	function test_deleteAll()
-   //  	{
-   //  		$name = "Starbucks Bathroom";
-   //  		$gender = "male";
-   //  		$key = '0';
-   //  		$stall = '0';
-   //  		$handicap = '0';
-   //  		$changing_table = '0';
-   //  		$id = 1;
-   //  		$test_bathroom = new Bathroom($name, $gender, $key, $stall, $handicap, $changing_table, $id);
-   //  		$test_bathroom->save();
+    	function test_deleteAll()
+    	{
+    		$unisex = "0";
+    		$key_required = '0';
+    		$public = '0';
+    		$handicap = '0';
+    		$changing_table = '0';
+   			$marker_id = '3';
+    		$id = 1;
+    		$test_bathroom = new Bathroom($unisex, $key_required, $public, $handicap, $changing_table, $marker_id, $id);
+    		$test_bathroom->save();
 
-   //  		$name2 = "Target Bathroom";
-   //  		$gender2 = "female";
-   //  		$key2 = '1';
-   //  		$stall2 = '1';
-   //  		$handicap2 = '1';
-   //  		$changing_table2 = '1';
-   //  		$id2 = 1;
-   //  		$test_bathroom2 = new Bathroom($name2, $gender2, $key2, $stall2, $handicap2, $changing_table2, $id2);
-   //  		$test_bathroom2->save();
+    		$unisex2 = 0;
+    		$key_required2 = 1;
+    		$public2 = 1;
+    		$handicap2 = 1;
+    		$changing_table2 = 1;
+   			$marker_id2 = 2;
+    		$id2 = 1;
+    		$test_bathroom2 = new Bathroom($name2, $unisex2, $key_required2, $public2, $handicap2, $changing_table2, $marker_id2, $id2);
+    		$test_bathroom2->save();
 
-   //  		// $test_bathroom->addBathroom($test_bathroom->getId());
-   //  		// $test_bathroom->addBathroom($test_bathroom2->getId());
+    		// $test_bathroom->addBathroom($test_bathroom->getId());
+    		// $test_bathroom->addBathroom($test_bathroom2->getId());
 
-			// // $test_bathroom->deleteAllBathrooms($test_bathroom->getId());
-			// Bathroom::deleteAll();
-			// $result = Bathroom::getAll();
+			// $test_bathroom->deleteAllBathrooms($test_bathroom->getId());
+			Bathroom::deleteAll();
+			$result = Bathroom::getAll();
 
-			// $this->assertEquals([], $result);
-   //  	}
+			$this->assertEquals([], $result);
+    	}
 
-   //  	function test_find()
-   //  	{
-   //  		//Arrange	
-   //  		$name = "Starbucks Bathroom";
-   //  		$gender = "male";
-   //  		$key = '0';
-   //  		$stall = '0';
-   //  		$handicap = '0';
-   //  		$changing_table = '0';
-   //  		$id = 'id';
-   //  		$test_bathroom = new Bathroom($name, $gender, $key, $stall, $handicap, $changing_table, $id);
-   //  		$test_bathroom->save();
+    	function test_find()
+    	{
+    		//Arrange	
+    		$unisex = 0;
+    		$key_required = 0;
+    		$public = 0;
+    		$handicap = 0;
+    		$changing_table = 0;
+   		$marker_id = 2;
+    		$id = 1;
+    		$test_bathroom = new Bathroom($unisex, $key_required, $public, $handicap, $changing_table, $marker_id, $id);
+    		$test_bathroom->save();
 
-   //  		$name2 = "Target Bathroom";
-   //  		$gender2 = "female";
-   //  		$key2 = '0';
-   //  		$stall2 = '0';
-   //  		$handicap2 = '0';
-   //  		$changing_table2 = '0';
-   //  		$id2 = 2;
-   //  		$test_bathroom2 = new Bathroom($name2, $gender2, $key2, $stall2, $handicap2, $changing_table2, $id2);
-   //  		$test_bathroom2->save();
 
-   //  		//Act
-   //  		$result = Bathroom::find($test_bathroom->getId());
+    		$unisex2 = 0;
+    		$key_required2 = 0;
+    		$public2 = 0;
+    		$handicap2 = 0;
+    		$changing_table2 = 0;
+   			$marker_id = 2;
+    		$id2 = 2;
+    		$test_bathroom2 = new Bathroom($unisex2, $key_required2, $public2, $handicap2, $changing_table2, $marker_id2, $id2);
+    		$test_bathroom2->save();
 
-   //  		//Assert
-   //  		$this->assertEquals($test_bathroom, $result);
+    		//Act
+    		$result = Bathroom::find($test_bathroom->getId());
 
-   //  	}
+    		//Assert
+    		$this->assertEquals($test_bathroom, $result);
+
+    	}
     }
