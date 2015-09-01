@@ -120,6 +120,11 @@
             return $markers;
         }
 		
+		static function deleteAll()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM markers;");
+        }
+		
 		static function find($search_id)
         {
             $found_marker = null;
