@@ -77,9 +77,9 @@
         {
             $GLOBALS['DB']->exec("INSERT INTO markers (name, address, lat, lng, type) VALUES ('{$this->getName()}',
              '{$this->getAddress()}',
-              {$this->getlat()},
-              {$this->getlng()},
-			 '{$this->getType}')"
+              {$this->getLat()},
+              {$this->getLng()},
+			 '{$this->getType()}');"
              );
             
 			$this->id = $GLOBALS['DB']->lastInsertId();
@@ -103,15 +103,15 @@
 		
 		static function getAll()
         {
-            $returned_markers = $GLOBALS['DB']->query("SELECT * from markers;");
+            $returned_markers = $GLOBALS['DB']->query("SELECT id, name, address, lat, lng, type FROM markers;");
             
             $markers = array();
             
             foreach($returned_markers as $marker) {
                 $name = $marker['name'];
 				$address = $marker['address'];
-				$lat = $marker['lat'];
-				$lng = $marker['lng'];
+				$lat = (float) $marker['lat'];
+				$lng = (float) $marker['lng'];
 				$type = $marker['type'];
                 $id = $marker['id'];
                 $new_marker = new Marker($name, $address, $lat, $lng, $type, $id);

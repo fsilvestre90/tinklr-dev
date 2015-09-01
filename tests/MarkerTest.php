@@ -193,51 +193,87 @@
 
             $this->assertEquals(true, is_numeric($result));
         }
+        
+        function test_deleteAll()
+        {
+            $test_marker = new Marker("Pok Pok", "123 abcd street", 34.343534, 41.890890, "Restaurant");
 
-        // function test_save()
-        // {
-        //     $name = "Pok Pok";
-        //     $address = "123 abcd street";
-        //     $lat = 34.343534;
-        //     $lng = 41.984759;
-        //     $type = "Bar";
+            $new_name = "Whiskey Soda Lounge";
+            $new_address = "678 DEF street";
+            $new_lat = 41.890890;
+            $new_lng = 34.343534;
+            $new_type = "Bar";
 
-        //     $test_marker = new Marker($name, $address, $lat, $lng, $type);
-        //     $test_marker->save();
+            $new_marker = new Marker($new_name, $new_address, $new_lat, $new_lng, $new_type);
+            
+            Marker::deleteAll();
 
-        //     $result = Marker::getAll();
+            $this->assertEquals([], Marker::getAll());
+        }
 
-        //     $this->assertEquals($test_marker, $result[0]);
-        // }
 
-        // function test_update()
-        // {
-        //     $test_marker = new Marker("Pok Pok", "123 abcd street", 34.343534, 41.890890, "Restaurant");
+        function test_save()
+        {
+            $name = "Pok Pok";
+            $address = "123 abcd street";
+            $lat = 34.343534;
+            $lng = 41.984759;
+            $type = "Bar";
 
-        //     $new_name = "Whiskey Soda Lounge";
-        //     $new_address = "678 DEF street";
-        //     $new_lat = 41.890890;
-        //     $new_lng = 34.343534;
-        //     $new_type = "Bar";
+            $test_marker = new Marker($name, $address, $lat, $lng, $type);
+            $test_marker->save();
+            var_dump($test_marker);
+            var_dump(Marker::getAll());
+            $result = Marker::getAll();
 
-        //     $new_marker = new Marker($new_name, $new_address, $new_lat, $new_lng, $new_type);
+            $this->assertEquals($test_marker, $result[0]);
+        }
+        
+        function test_getAll()
+        {
+            $test_marker = new Marker("Pok Pok", "123 abcd street", 34.343534, 41.890890, "Restaurant");
+            $test_marker->save();
+            
+            $new_name = "Whiskey Soda Lounge";
+            $new_address = "678 DEF street";
+            $new_lat = 41.890890;
+            $new_lng = 34.343534;
+            $new_type = "Bar";
 
-        //     $test_marker->update($new_name, $new_address, $new_lat, $new_lng, $new_type);
+            $new_marker = new Marker($new_name, $new_address, $new_lat, $new_lng, $new_type);
+            $new_marker->save();
 
-        //     $this->assertEquals($new_marker, $test_marker);
-        // }
+            $this->assertEquals([$test_marker, $new_marker], Marker::getAll());
+        }
 
-        // function test_delete()
-        // {
-        //     $test_marker = new Marker("Pok Pok", "123 abcd street", 34.343534, 41.890890, "Restaurant");
-        //     $test_marker->save();
+        function test_update()
+        {
+            $test_marker = new Marker("Pok Pok", "123 abcd street", 34.343534, 41.890890, "Restaurant");
 
-        //     $test_marker2 = new Marker("Whiskey Soda Lounge", "678 DEF street", 41.890890, 34.343534, "Bar");
-        //     $test_marker2->save();
+            $new_name = "Whiskey Soda Lounge";
+            $new_address = "678 DEF street";
+            $new_lat = 41.890890;
+            $new_lng = 34.343534;
+            $new_type = "Bar";
 
-        //     $test_marker->delete();
+            $new_marker = new Marker($new_name, $new_address, $new_lat, $new_lng, $new_type);
 
-        //     $this->assertEquals([$test_marker2], Marker::getAll());
-        // }
+            $test_marker->update($new_name, $new_address, $new_lat, $new_lng, $new_type);
+
+            $this->assertEquals($new_marker, $test_marker);
+        }
+
+        function test_delete()
+        {
+            $test_marker = new Marker("Pok Pok", "123 abcd street", 34.343534, 41.890890, "Restaurant");
+            $test_marker->save();
+
+            $test_marker2 = new Marker("Whiskey Soda Lounge", "678 DEF street", 41.890890, 34.343534, "Bar");
+            $test_marker2->save();
+
+            $test_marker->delete();
+
+            $this->assertEquals([$test_marker2], Marker::getAll());
+        }
     }
 ?>
