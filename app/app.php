@@ -2,8 +2,9 @@
 
     // DEPENDENCIES
         require_once __DIR__."/../vendor/autoload.php"; // frameworks
+        require_once __DIR__."/../src/Marker.php";
 
-    //ENABLE HTTP PARAMETER OVERRIDE 
+    //ENABLE HTTP PARAMETER OVERRIDE
         use Symfony\Component\HttpFoundation\Request;
         Request::enableHttpMethodParameterOverride();
 
@@ -13,7 +14,7 @@
 
     //INITIALIZE DATABASE CONNECTION
         try{
-            $server = 'mysql:host=localhost:8889;dbname=shoe_store';
+            $server = 'mysql:host=localhost:8889;dbname=tinklr';
             $username = 'root';
             $password = 'root';
             $DB = new PDO($server, $username, $password);
@@ -35,6 +36,12 @@
         $app->get('/', function() use ($app) {
 
             return $app['twig']->render('index.html.twig');
+        });
+
+        // display index webpage
+        $app->get('/add_bathroom', function() use ($app) {
+
+            return $app['twig']->render('add_bathroom.html.twig');
         });
 
 

@@ -1,7 +1,4 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
-
-<!-- HEADER -->
-
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
@@ -10,13 +7,9 @@
 	<!-- Optional theme -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 	<link rel="stylesheet" href="css/custom.css" type="text/css">
-	<link href='https://fonts.googleapis.com/css?family=Poppins:400,300' rel='stylesheet' type='text/css'>
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<title>Google Maps AJAX + mySQL/PHP Example</title>
-
-<!-- JAVASCRIPT FOR GOOGLE API -->
-
 	<script src="http://maps.google.com/maps/api/js?sensor=false"
 	type="text/javascript"></script>
 	<script type="text/javascript">
@@ -151,9 +144,6 @@
 		//]]>
 		</script>
 	</head>
-
-<!-- BODY -->
-
 	<body style="margin:0px; padding:0px;" onload="load()">
 		<!--/.content-->
 		<div class="content white">
@@ -165,9 +155,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">
-						<p><span>t</span>inkl<i class="flaticon-toilet1"></i>r</p>
-					</a>
+					<a class="navbar-brand" href="#"><strong>Tinklr</strong></a>
 				</div>
 				<!--/.navbar-header-->
 
@@ -187,9 +175,9 @@
 					<div class="form-group">
 						<input class="form-control" placeholder="97214" type="text" id="addressInput" size="10"/>
 						<select class="form-control" id="radiusSelect">
-							<option value="25" selected>25mi</option>
-							<option value="100">100mi</option>
-							<option value="200">200mi</option>
+							<option value="1" selected>1mi</option>
+							<option value="2">2mi</option>
+							<option value="3">3mi</option>
 						</select>
 						<input class="btn btn-default btn-block" type="button" onclick="searchLocations()" value="Search"/>
 					</div>
