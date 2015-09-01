@@ -75,8 +75,8 @@ CREATE TABLE `markers` (
     `id` BIGINT NOT NULL AUTO_INCREMENT,
     `name` VARCHAR( 60 ) NOT NULL ,
     `address` VARCHAR( 80 ) NOT NULL ,
-    `lat` FLOAT( 10, 6 ) NOT NULL ,
-    `lng` FLOAT( 10, 6 ) NOT NULL,
+    `lat` DECIMAL( 10, 6 ) NOT NULL ,
+    `lng` DECIMAL( 10, 6 ) NOT NULL,
     `type` VARCHAR( 60 ) NOT NULL ,
     PRIMARY KEY (`id`)
 );
