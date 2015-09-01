@@ -3,13 +3,14 @@ body{
 }
 h1{
     font-family: 'Poppins', sans-serif;
-    color:  #66CCFF;
+    /*color:  #66CCFF; Darker blue*/
+    color: #CCFFCC;
     font-size: 5em;
     text-align: center;
 }
 h2{
     font-family: 'Poppins', sans-serif;
-    color:  #66CCFF;
+    color:  #CCFFCC;
     font-size: 2em;
     text-align: center;
 }
