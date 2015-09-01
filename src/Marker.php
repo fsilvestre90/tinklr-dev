@@ -8,7 +8,7 @@
 		private $type;
 		private $id;
 		
-		function __construct($name, $address, $lat, $lng, $zipcode, $type, $id)
+		function __construct($name, $address, $lat, $lng, $type, $id=null)
 		{
 			$this->name = $name;
 			$this->address = $address;
@@ -77,9 +77,9 @@
         {
             $GLOBALS['DB']->exec("INSERT INTO markers (name, address, lat, lng, type) VALUES ('{$this->getName()}',
              '{$this->getAddress()}',
-              {$this->getlat()},
-              {$this->getlng()},
-			 '{$this->getType}')"
+              {$this->getLat()},
+              {$this->getLng()},
+			 '{$this->getType()}');"
              );
             
 			$this->id = $GLOBALS['DB']->lastInsertId();
@@ -98,26 +98,31 @@
 		function delete()
         {
             $GLOBALS['DB']->exec("DELETE FROM markers WHERE id = {$this->getId()};");
-            $GLOBALS['DB']->exec("DELETE FROM bathrooms_markers WHERE marker_id = {$this->getId()};");
+            // $GLOBALS['DB']->exec("DELETE FROM bathrooms_markers WHERE marker_id = {$this->getId()};");
         }
 		
 		static function getAll()
         {
-            $returned_markers = $GLOBALS['DB']->query("SELECT * from markers;");
+            $returned_markers = $GLOBALS['DB']->query("SELECT id, name, address, lat, lng, type FROM markers;");
             
             $markers = array();
             
             foreach($returned_markers as $marker) {
                 $name = $marker['name'];
 				$address = $marker['address'];
-				$lat = $marker['lat'];
-				$lng = $marker['lng'];
+				$lat = (float) $marker['lat'];
+				$lng = (float) $marker['lng'];
 				$type = $marker['type'];
                 $id = $marker['id'];
                 $new_marker = new Marker($name, $address, $lat, $lng, $type, $id);
                 array_push($markers, $new_marker);
             }
             return $markers;
+        }
+		
+		static function deleteAll()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM markers;");
         }
 		
 		static function find($search_id)
