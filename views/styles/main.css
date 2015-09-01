@@ -1,0 +1,18 @@
+body{
+    background: #003399;
+}
+h1{
+    font-family: 'Poppins', sans-serif;
+    color:  #66CCFF;
+    font-size: 5em;
+    text-align: center;
+}
+h2{
+    font-family: 'Poppins', sans-serif;
+    color:  #66CCFF;
+    font-size: 2em;
+    text-align: center;
+}
+span{
+    font-size: 1.3em;
+}
