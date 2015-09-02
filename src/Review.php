@@ -47,7 +47,7 @@ class Review
 
     function save()
     {
-        $GLOBALS['DB']->exec("INSERT INTO reviews (rating, comment) VALUES ({$this->getRating}, '{$this->getComment}'); ");
+        $GLOBALS['DB']->exec("INSERT INTO reviews (rating, description) VALUES ({$this->getRating}, '{$this->getComment}'); ");
 
         $this->id = $GLOBALS['DB']->lastInsertId();
     }
@@ -59,7 +59,7 @@ class Review
             foreach($returned_reviews as $review) {
                 $rating = $review['rating'];
                 $id = $review['id'];
-                $comment = $comment['comment'];
+                $comment = $review['comment'];
                 $new_review = new Review($review, $comment, $id);
                 array_push($reviews, $new_review);
             }
@@ -70,7 +70,7 @@ class Review
     static function find($search_id)
     {
         $found_review = null;
-        $review = Client::getAll();
+        $review = Review::getAll();
         foreach($reviews as $review) {
             $review_id = $review->getId();
             if ($review_id == $search_id) {
