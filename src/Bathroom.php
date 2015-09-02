@@ -1,8 +1,7 @@
 <?php
-	
+
 	class Bathroom
 	{
-		// private $name;
 		private $unisex;
 		private $key_required;
 		private $public;
@@ -22,16 +21,6 @@
 			$this->changing_table = $changing_table;
 			$this->marker_id = $marker_id;
 			$this->id = $id;
-		}
-
-		function getName()
-		{
-			return $this->name;
-		}
-
-		function setName($new_name)
-		{
-			$this->name = $new_name;
 		}
 
 		function getUnisex()
@@ -111,7 +100,7 @@
 					{$this->getHandicap()},
 					{$this->getChangingTable()},
 					{$this->getMarkerId()}
-				);" 
+				);"
 			);
             $this->id = $GLOBALS['DB']->lastInsertId();
 		}
@@ -176,6 +165,31 @@
 			}
 			return $found_bathroom;
 		}
+		
+		function addReview($review_id)
+        {
+            $GLOBALS['DB']->exec("INSERT INTO bathrooms_reviews (bathroom_id, review_id) VALUES ({$this->getId()}, {$review_id});");
+        }
+        
+        function getReviews()
+        {
+            $returned_reviews = $GLOBALS['DB']->query("SELECT reviews.* FROM
+                reviews JOIN bathrooms_reviews ON (reviews.id = bathrooms_reviews.review_id)
+                JOIN bathrooms ON (bathrooms.id = bathrooms_reviews.bathroom_id)
+                WHERE bathrooms.id = {$this->getId()}");
+
+            $reviews = array();
+            foreach($returned_reviews as $review)
+            {
+                $comment = $review['comment'];
+				$rating = $review['rating'];
+                $id = $review['id'];
+                $new_review = new review($comment, $id);
+                array_push($reviews, $new_review);
+            }
+
+            return $reviews;
+        }
 
 	}
 
