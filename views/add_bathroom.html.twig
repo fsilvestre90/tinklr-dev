@@ -79,45 +79,47 @@
 
                         <!-- Input field for text -->
                         <label for="name">Name</label>
-						<input class="form-control" placeholder="Name" type="text" id="name" size="10"/ required><br/>
+						<input name="name" class="form-control" placeholder="Name" type="text" id="name" size="10"/ required><br/>
                         
                         <label for="address">Address</label>
-						<input class="form-control" placeholder="Address" type="text" id="address" size="10"/ required><br/>
+						<input name="address" class="form-control" placeholder="Address" type="text" id="address" size="10"/ required><br/>
                         
                         <label for="type">Type</label>
-						<input class="form-control" placeholder="Type" type="text" id="type" size="10"/ required><br/>
+						<input name="type" class="form-control" placeholder="Type" type="text" id="type" size="10"/ required><br/>
 
                         <!-- Example of drop down menu to select options -->
                         
                         <label for="unisex">Unisex</label>
                         <select class="form-control" id="radiusSelect">
-							<option value="0" selected>No</option>
-							<option value="1">Yes</option>
+							<option id="unisex" name="unisex" value="0" selected>No</option>
+							<option id="unisex" name="unisex" value="1">Yes</option>
 						</select>
                         
                         <label for="public">Public</label>
                         <select class="form-control" id="radiusSelect">
-							<option value="0" selected>No</option>
-							<option value="1">Yes</option>
+							<option id="public" name="public" value="0" selected>No</option>
+							<option id="public" name="public" value="1">Yes</option>
 						</select>
                         
                         <label for="key_required">Key Required</label>
                         <select class="form-control" id="radiusSelect">
-							<option value="0" selected>No</option>
-							<option value="1">Yes</option>
+							<option id="key_required" name="key_required" value="0" selected>No</option>
+							<option id="key_required" name="key_required" value="1">Yes</option>
 						</select>
                         
                         <label for="handicap">Handicap</label>
                         <select class="form-control" id="radiusSelect">
-							<option value="0" selected>No</option>
-							<option value="1">Yes</option>
+							<option id="handicap" name="handicap" value="0" selected>No</option>
+							<option id="handicap" name="handicap" value="1">Yes</option>
 						</select>
                         
                         <label for="changing_table">Changing Table</label>
                         <select class="form-control" id="radiusSelect">
-							<option value="0" selected>No</option>
-							<option value="1">Yes</option>
+							<option id="changing_table" name="changing_table" value="0" selected>No</option>
+							<option id="changing_table" name="changing_table" value="1">Yes</option>
 						</select>
+                        
+                        <input id="marker_id" name="marker_id" type="hidden" value="{{ marker.getId() }}">
                         
                         <!-- Submit button, change onclick later -->
 						<button type="submit" class="btn btn-success">Add</button>
