@@ -184,7 +184,7 @@
                 $comment = $review['comment'];
 				$rating = $review['rating'];
                 $id = $review['id'];
-                $new_review = new review($comment, $id);
+                $new_review = new Review($rating, $comment, $id);
                 array_push($reviews, $new_review);
             }
 
