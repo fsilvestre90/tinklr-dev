@@ -5,7 +5,6 @@
     * @backupStaticAttributes disabled
     */
 
-    AAAAAAaaaa
 
     require_once "src/Marker.php";
 
@@ -224,8 +223,7 @@
 
             $test_marker = new Marker($name, $address, $lat, $lng, $type);
             $test_marker->save();
-            var_dump($test_marker);
-            var_dump(Marker::getAll());
+
             $result = Marker::getAll();
 
             $this->assertEquals($test_marker, $result[0]);
