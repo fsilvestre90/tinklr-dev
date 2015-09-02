@@ -49,7 +49,7 @@
         // Admin Page
         $app->get('/admin', function() use ($app){
 
-            return $app['twig']->render('admin.html.twig', array());
+            return $app['twig']->render('admin.html.twig', array('bathrooms' => Bathroom::getAll()));
         });
 
 
