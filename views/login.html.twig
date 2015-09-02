@@ -68,46 +68,26 @@
         <!-- /.container -->
     </nav>
 
-    <!-- Add Bathroom Section -->
+    <!-- Log-in Section -->
     <section id="search" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <h2>Add a bathroom to our database:</h2>
-
+                <h2>Enter your username and password:</h2>
                 <form class="form-inline">
 					<div class="form-group">
-
-                        <!-- Input field for text -->
-                        <label for="name">Name</label>
-						<input class="form-control" placeholder="Name" type="text" id="name" size="10"/><br/>
-                        <label for="name">Name</label>
-						<input class="form-control" placeholder="Name" type="text" id="name" size="10"/><br/>
-
-                        <!-- Example of drop down menu to select options -->
-                        <label for="gender">Gender</label>
-                        <select class="form-control" id="radiusSelect">
-							<option value="1" selected>1mi</option>
-							<option value="5">5mi</option>
-							<option value="10">10mi</option>
-						</select>
-                        <!-- Submit button, change onclick later -->
-						<input class="btn btn-default btn-block" type="button" onclick="searchLocations()" value="Add"/>
+						<input class="form-control" placeholder="Admin" type="text" id="username" size="10"/>
+						<input class="form-control" placeholder="Pass" type="password" id="password" size="10"/>
+						<a href="/admin"><input class="btn btn-default btn-block" type="button" value="Submit"/></a>
 					</div>
 				</form>
-                <br/><br/>
-                <form class="form-inline">
-                    <div class="form-group">
-                        <select class="form-control" id="locationSelect" style="width:100%;visibility:hidden"></select>
-                    </div>
-                </form>
             </div>
         </div>
     </section>
 
-
     <!-- Footer -->
     <footer>
         <div class="container text-center">
+            <br/><br/><br/><br/><br/><br/>
             <p>Copyright &copy; Filipe Silvestre, Samantha Maturen, Alex Costa, Jeff Austin, Tyler Deem 2015</p>
         </div>
     </footer>
