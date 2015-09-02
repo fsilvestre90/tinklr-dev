@@ -47,20 +47,20 @@ class Review
 
     function save()
     {
-        $GLOBALS['DB']->exec("INSERT INTO reviews (rating, comment) VALUES ({$this->getRating}, '{$this->getComment}'); ");
+        $GLOBALS['DB']->exec("INSERT INTO reviews (rating, description) VALUES ({$this->getRating()}, '{$this->getComment()}'); ");
 
         $this->id = $GLOBALS['DB']->lastInsertId();
     }
 
     function getAll()
     {
-        $returned_reviews = $GLOBALS['DB']->query("SELECT * FROM reviews ORDER BY id;");
+        $returned_reviews = $GLOBALS['DB']->query("SELECT * FROM reviews;");
             $reviews = array();
             foreach($returned_reviews as $review) {
                 $rating = $review['rating'];
                 $id = $review['id'];
-                $comment = $comment['comment'];
-                $new_review = new Review($review, $comment, $id);
+                $comment = $review['description'];
+                $new_review = new Review($rating, $comment, $id);
                 array_push($reviews, $new_review);
             }
         return $reviews;
@@ -70,7 +70,7 @@ class Review
     static function find($search_id)
     {
         $found_review = null;
-        $review = Client::getAll();
+        $reviews = Review::getAll();
         foreach($reviews as $review) {
             $review_id = $review->getId();
             if ($review_id == $search_id) {
@@ -93,10 +93,10 @@ class Review
     }
 
     /**************** UPDATE ***********************/
-    function updateReview()
+    function updateReview($new_comment)
     {
-        $GLOBALS['DB']->exec("UPDATE reviews SET reviews = {$new_review} WHERE id = {$this->getId()}");
-        $this->setReview($new_review);
+        $GLOBALS['DB']->exec("UPDATE reviews SET description = {$new_comment} WHERE id = {$this->getId()}");
+        $this->setComment($new_comment);
     }
 
 }
