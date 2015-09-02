@@ -74,8 +74,8 @@
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>Bathrooms</h2>
                 <ul>
-                {% for bathroom in bathrooms %}
-                    <li><a href="#">{{bathroom.getName}}</a></li>
+                {% for marker in markers %}
+                    <li><a href="#">{{marker.getName}}</a></li>
                 {% endfor %}
                 </ul>
                 <h3>Display all bathrooms, after clicking a bathroom, allow user to delete one bathroom and all it's reviews</h3>
