@@ -61,7 +61,6 @@ a:focus {
     font-weight: 400;
 }
 
-
 .navbar-custom {
     margin-bottom: 0;
     border-bottom: 1px solid rgba(255,255,255,.3);
@@ -148,7 +147,7 @@ a:focus {
     padding: 100px 0;
     text-align: center;
     color: #fff;
-    background: url(../img/page_bg.gif) no-repeat bottom center scroll;
+    background: url(../img/intro-bg.gif) no-repeat bottom center scroll;
     background-color: #000;
     -webkit-background-size: cover;
     -moz-background-size: cover;
