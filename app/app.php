@@ -45,7 +45,7 @@
         });
 
         // Admin Page
-        $app->get('/login', function() use ($app){
+        $app->get('/admin', function() use ($app){
 
             return $app['twig']->render('admin.html.twig');
         });
