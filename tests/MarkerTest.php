@@ -193,7 +193,7 @@
 
             $this->assertEquals(true, is_numeric($result));
         }
-        
+
         function test_deleteAll()
         {
             $test_marker = new Marker("Pok Pok", "123 abcd street", 34.343534, 41.890890, "Restaurant");
@@ -205,7 +205,7 @@
             $new_type = "Bar";
 
             $new_marker = new Marker($new_name, $new_address, $new_lat, $new_lng, $new_type);
-            
+
             Marker::deleteAll();
 
             $this->assertEquals([], Marker::getAll());
@@ -227,12 +227,12 @@
 
             $this->assertEquals($test_marker, $result[0]);
         }
-        
+
         function test_getAll()
         {
             $test_marker = new Marker("Pok Pok", "123 abcd street", 34.343534, 41.890890, "Restaurant");
             $test_marker->save();
-            
+
             $new_name = "Whiskey Soda Lounge";
             $new_address = "678 DEF street";
             $new_lat = 41.890890;
