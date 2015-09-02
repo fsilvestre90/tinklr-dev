@@ -1,54 +1,23 @@
 <?php
-    
+
     /**
     * @backupGlobals disabled
     * @backupStatic Attributes disabled
     */
 
     require_once "src/Bathroom.php";
- 
 
-		$server = 'mysql:host=localhost:8889;dbname=tinklr_test';
-		$username = 'root';
-		$password = 'root';
-		$DB = new PDO($server, $username, $password);
+
+	$server = 'mysql:host=localhost:8889;dbname=tinklr_test';
+	$username = 'root';
+	$password = 'root';
+	$DB = new PDO($server, $username, $password);
 
     class BathroomTest extends PHPUnit_Framework_TestCase
     {
     	protected function tearDown()
     	{
     		Bathroom::deleteAll();
-    	}
-
-    	function test_getName()
-    	{
-    		//Arrange
-    		$unisex = 0;
-    		$key_required = 1;
-    		$public = 0;
-    		$handicap = 1;
-    		$changing_table = 1;
-    		$id = 1;
-
-    		$test_bathroom = new Bathroom($unisex, $key_required, $public, $handicap, $changing_table, $id);
-
-    		$result = $test_bathroom->getName();
-    		var_dump($test_bathroom);
-
-
-    		$this->assertEquals($name, $result);
-    	}
-
-    	function test_setName()
-    	{
-    		$name = "Starbucks Bathroom";
-    		$test_bathroom = new Bathroom($name, $unisex, $key_required, $public, $handicap, $changing_table, $id);
-
-    		$test_bathroom->setName("Target Bathroom");
-
-    		$result = $test_bathroom->getName();
-
-    		$this->assertEquals("Target Bathroom", $result);
     	}
 
     	function test_getunisex()
@@ -93,6 +62,7 @@
     	function test_getKey_required()
     	{
     		//Arrange
+            $unisex = 0;
     		$key_required = '1';
     		$id = null;
     		$test_key_required = new Bathroom($unisex, $key_required, $public, $handicap, $changing_table, $id);
@@ -107,11 +77,12 @@
     	function test_setKey_required()
     	{
     		//Arrange
+            $unisex = 0;
     		$key_required = '01';
     		$id = null;
     		$test_key_required = new Bathroom($unisex, $key_required, $public, $handicap, $changing_table, $id);
-    		
-    		//Act	
+
+    		//Act
     		$test_key_required->setkey_required("10");
     		$result = $test_key_required->getkey_required();
 
@@ -154,10 +125,10 @@
     		$handicap = '1';
     		$id = null;
     		$test_handicap = new Bathroom($unisex, $key_required, $public, $handicap, $changing_table, $id);
-    		
+
     		//Act
-    		$result = $test_handicap->getHandicap();	
-    		
+    		$result = $test_handicap->getHandicap();
+
     		//Assert
     		$this->assertEquals($handicap, $result);
     	}
@@ -216,9 +187,9 @@
     		$changing_table = 1;
     		$marker_id = 2;
     		$id = 1;
-    		$test_bathroom = new Bathroom($name, $unisex, $key_required, $public, $handicap, $changing_table, $marker_id, $id);
+    		$test_bathroom = new Bathroom($unisex, $key_required, $public, $handicap, $changing_table, $marker_id, $id);
     		$test_bathroom->save();
-    		
+
     		//Act
     		$result = $test_bathroom->getId();
 
@@ -238,14 +209,14 @@
     		$id = 1;
     		$test_bathroom = new Bathroom($unisex, $key_required, $public, $handicap, $changing_table, $marker_id, $id);
     		$test_bathroom->save();
-    		
+
     		//Act
     		$result = $test_bathroom->getId();
     		var_dump($result);
     		//Assert
     		$this->assertEquals(true, is_numeric($result));
     	}
-   
+
     	function test_save()
     	{
     		$unisex = 0;
@@ -253,7 +224,7 @@
     		$public = 1;
     		$handicap = 1;
     		$changing_table = 0;
-    		$marker_id = 2;	
+    		$marker_id = 2;
     		$test_bathroom = new Bathroom($unisex, $key_required, $public, $handicap, $changing_table, $marker_id);
     		$test_bathroom->save();
 
@@ -281,7 +252,7 @@
     		$changing_table2 = 1;
    			$marker_id2 = 2;
     		$id2 = 1;
-    		$test_bathroom2 = new Bathroom($name2, $unisex2, $key_required2, $public2, $handicap2, $changing_table2, $marker_id2, $id2);
+    		$test_bathroom2 = new Bathroom($unisex2, $key_required2, $public2, $handicap2, $changing_table2, $marker_id2, $id2);
     		$test_bathroom2->save();
 
     		// $test_bathroom->addBathroom($test_bathroom->getId());
@@ -296,7 +267,7 @@
 
     	function test_find()
     	{
-    		//Arrange	
+    		//Arrange
     		$unisex = 0;
     		$key_required = 0;
     		$public = 0;

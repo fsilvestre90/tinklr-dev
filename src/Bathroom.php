@@ -1,8 +1,7 @@
 <?php
-	
+
 	class Bathroom
 	{
-		// private $name;
 		private $unisex;
 		private $key_required;
 		private $public;
@@ -22,16 +21,6 @@
 			$this->changing_table = $changing_table;
 			$this->marker_id = $marker_id;
 			$this->id = $id;
-		}
-
-		function getName()
-		{
-			return $this->name;
-		}
-
-		function setName($new_name)
-		{
-			$this->name = $new_name;
 		}
 
 		function getUnisex()
@@ -111,7 +100,7 @@
 					{$this->getHandicap()},
 					{$this->getChangingTable()},
 					{$this->getMarkerId()}
-				);" 
+				);"
 			);
             $this->id = $GLOBALS['DB']->lastInsertId();
 		}

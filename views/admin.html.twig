@@ -72,7 +72,12 @@
     <section id="search" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <h2>List of all bathrooms, each links to own page.</h2>
+                <h2>Bathrooms</h2>
+                <ul>
+                {% for bathroom in bathrooms %}
+                    <li><a href="#">{{bathroom.getName}}</a></li>
+                {% endfor %}
+                </ul>
                 <h3>Display all bathrooms, after clicking a bathroom, allow user to delete one bathroom and all it's reviews</h3>
             </div>
         </div>
