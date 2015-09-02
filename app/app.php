@@ -3,6 +3,8 @@
     // DEPENDENCIES
         require_once __DIR__."/../vendor/autoload.php"; // frameworks
         require_once __DIR__."/../src/Marker.php";
+        require_once __DIR__."/../src/Bathroom.php";
+        require_once __DIR__."/../src/Review.php";
 
     //ENABLE HTTP PARAMETER OVERRIDE
         use Symfony\Component\HttpFoundation\Request;
@@ -47,7 +49,7 @@
         // Admin Page
         $app->get('/admin', function() use ($app){
 
-            return $app['twig']->render('admin.html.twig');
+            return $app['twig']->render('admin.html.twig', array());
         });
 
 
