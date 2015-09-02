@@ -5,8 +5,6 @@
     * @backupStaticAttributes disabled
     */
 
-    AAAAAA
-
     require_once "src/Marker.php";
 
     $server = 'mysql:host=localhost:8889;dbname=tinklr_test';
