@@ -48,8 +48,9 @@
 
         // Admin Page
         $app->get('/admin', function() use ($app){
+            //Dummy bathrooms
 
-            return $app['twig']->render('admin.html.twig', array('bathrooms' => Bathroom::getAll()));
+            return $app['twig']->render('admin.html.twig', array('bathrooms' => Bathroom::getAll(), 'markers' => Marker::getAll()));
         });
 
 
