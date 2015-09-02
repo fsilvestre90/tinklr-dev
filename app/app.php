@@ -44,6 +44,12 @@
             return $app['twig']->render('add_bathroom.html.twig');
         });
 
+        // Admin Page
+        $app->get('/login', function() use ($app){
+
+            return $app['twig']->render('admin.html.twig');
+        });
+
 
     return $app;
 
