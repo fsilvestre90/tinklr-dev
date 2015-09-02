@@ -307,8 +307,7 @@
     		$handicap = 0;
     		$changing_table = 0;
             $marker_id = 2;
-    		$id = 1;
-    		$test_bathroom = new Bathroom($unisex, $key_required, $public, $handicap, $changing_table, $marker_id, $id);
+    		$test_bathroom = new Bathroom($unisex, $key_required, $public, $handicap, $changing_table, $marker_id);
     		$test_bathroom->save();
 
 
@@ -332,7 +331,7 @@
     		$changing_table = 0;
             $marker_id = 2;
     		$id = 1;
-    		$test_bathroom = new Bathroom($unisex, $key_required, $public, $handicap, $changing_table, $marker_id, $id);
+    		$test_bathroom = new Bathroom($unisex, $key_required, $public, $handicap, $changing_table, $marker_id);
     		$test_bathroom->save();
             
             
