@@ -131,6 +131,27 @@
             return $app['twig']->render('bathroom.html.twig', array('bathroom' => $bathroom, 'marker' => $marker, 'reviews' => $reviews));
         });
 
+
+        // reviews
+
+        $app->get('/add_review/{id}', function($id) use ($app){
+            $marker = Marker::find($id);
+
+            return $app['twig']->render('add_review.html.twig', array('marker' => $marker));
+        });
+
+        $app->post('/add_review/{id}', function($id) use ($app){
+            $review = $_POST['review'];
+            $rating = $_POST['rating'];
+
+            var_dump($review);
+            $bathroom = Bathroom::find($id);
+            $marker = Marker::find($id);
+            $reviews = Review::getReviewsForBathroom($bathroom);
+
+            return $app['twig']->render('bathroom.html.twig', array('bathroom' => $bathroom, 'marker' => $marker, 'reviews' => $reviews));
+        });
+
     return $app;
 
 ?>
