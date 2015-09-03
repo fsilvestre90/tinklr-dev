@@ -108,13 +108,15 @@
 			for (var i = 0; i < markerNodes.length; i++) {
 				var name = markerNodes[i].getAttribute("name");
 				var address = markerNodes[i].getAttribute("address");
+                var id = markerNodes[i].getAttribute("id");
+
 				var distance = parseFloat(markerNodes[i].getAttribute("distance"));
 				var latlng = new google.maps.LatLng(
 					parseFloat(markerNodes[i].getAttribute("lat")),
 					parseFloat(markerNodes[i].getAttribute("lng")));
 
-					createOption(name, distance, i);
-					createMarker(latlng, name, address);
+					createOption(name, distance, id);
+					createMarker(latlng, name, address, id);
 					bounds.extend(latlng);
 				}
 				map.fitBounds(bounds);
@@ -126,19 +128,17 @@
 			});
 		}
 
-		function createMarker(latlng, name, address) {
-			var html = '<div class="infoindow">' +
-                                        '<h4>' + name + '</h4>' +
-                                        '<p>'+ address +'</p>' +
-                                '</div>';
+		function createMarker(latlng, name, address, id) {
 			var marker = new google.maps.Marker({
 				map: map,
 				position: latlng
 			});
             var infowindow = new google.maps.InfoWindow({ // Create a new InfoWindow
                 content:'<div class ="infowindow-text">' +
-                                           '<h4>' + name + '</h4>' +
-                                           '<p>'+ address +'</p>' +
+                                           '<h2>' + name + '</h2>' +
+                                           '<h4><u>Bathroom Address:</u></h4>' +
+                                           '<h4>' + address + '</h4>' +
+                                           '<h6><a href="/bathrooms/'+id+'">Click for more information</a></h6>' +
                         '</div>' // HTML contents of the InfoWindow
             });
             google.maps.event.addListener(marker, 'click', function() { // Add a Click Listener to our marker
