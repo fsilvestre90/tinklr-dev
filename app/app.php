@@ -53,6 +53,12 @@
             return $app['twig']->render('admin.html.twig', array('bathrooms' => Bathroom::getAll(), 'markers' => Marker::getAll()));
         });
 
+        // Admin Page
+        $app->get('/bathroom/{id}', function($id) use ($app){
+            $bathroom = Bathroom::find($id);
+
+            return $app['twig']->render('admin.html.twig', array('bathroom' => $bathroom));
+        });
 
     return $app;
 
