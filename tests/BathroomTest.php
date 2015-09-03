@@ -335,17 +335,20 @@
             
             $rating = 1;
             $comment = "This place sucks!";
-    
             $test_review = new Review($rating, $comment);
             $test_review->save();
             
             $rating2 = 3;
-            $comment2 = "It's aight!";
+            $comment2 = "Its aight!";
             $test_review2 = new Review($rating2, $comment2);
+            $test_review2->save();
 
             $test_bathroom->addReview($test_review->getId());
             $test_bathroom->addReview($test_review2->getId());
 
-            $this->assertEquals($test_bathroom->getReviews(), [$test_review2, $test_review]);
+            $result = $test_bathroom->getReviews();
+
+            $this->assertEquals([$test_review, $test_review2], $result);
         }
     }
+?>
