@@ -17,6 +17,12 @@
     <!-- Custom CSS -->
     <link href="css/grayscale.css" rel="stylesheet">
 
+    <!-- toilet man icon -->
+    <link rel="stylesheet" type="text/css" href="MyIcons/flaticon.css">
+
+    <!-- Admin CSS -->
+    <link rel="stylesheet" href="/css/logo.css">
+
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
@@ -33,7 +39,7 @@
                     <i class="fa fa-bars"></i>
                 </button>
                 <a class="navbar-brand page-scroll" href="/">
-                    tinklr
+                    <span class="t">t</span>inkl<i class="flaticon-toilet1"></i>r
                 </a>
             </div>
 
@@ -60,33 +66,57 @@
         <!-- /.container -->
     </nav>
 
-    <!-- /.admin sign-in -->
+    <!-- Signin Section -->
+    <section id="signin" class="container content-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+              <h2>Enter your user name and password:</h2>
+              <form class="form-inline">
+                  <div class="form-group">
+                    <label for="usr">User name:</label>
+                    <input type="text" placeholder="User name" class="form-control" id="usr">
+                  </div>
+                  <div class="form-group">
+                    <label for="pwd">Password:</label>
+                    <input type="password" placeholder="Password" class="form-control" id="pwd">
+                  </div>
+                  <div class="form-group">
+                    <button type="button" class="btn btn-primary" value="Login" onclick="javascript:validate()">Sign-in</button>
+                  </div>
+                </form>
+              </div>
+          </div>
+      </section>
 
-    <div class="container">
-      <h2>Admin Sign-in</h2>
-      <p>Enter your admin user name and admin password.<p>
-        <form role="form">
-          <div class="form-group">
-            <label for="usr">Admin name:</label>
-            <input type="text" placholder="Admin name" class="form-control" id="usr">
-          </div>
-          <div class="form-group">
-            <label for="pwd">Password:</label>
-            <input type="password" placeholder="Password" class="form-control" id="pwd">
-          </div>
-          <div class="form-group">
-            <button type="button" class="btn btn-primary" value="Login" onclick="javascript:validate()">Sign-in</button>
-          </div>
-        </form>
-      </div>
+
+
+              <!-- <form class="form-inline">
+                  <div class="form-group">
+                      <input class="form-control" placeholder="97214" type="text" id="addressInput" size="10"/>
+                      <select class="form-control" id="radiusSelect">
+                          <option value="1" selected>1mi</option>
+                          <option value="5">5mi</option>
+                          <option value="10">10mi</option>
+                      </select>
+                      <input class="btn btn-default btn-block" type="button" onclick="searchLocations()" value="Search"/>
+                  </div>
+              </form>
+              <br/><br/>
+              <form class="form-inline">
+                  <div class="form-group">
+                      <select class="form-control" id="locationSelect" style="width:100%;visibility:hidden"></select>
+                  </div>
+              </form> -->
+
 
 
     <!-- Footer -->
     <footer>
-        <div class="container text-center">
-            <br/><br/><br/><br/><br/><br/>
-            <p>Copyright &copy; Filipe Silvestre, Samantha Maturen, Alex Costa, Jeff Austin, Tyler Deem 2015</p>
-        </div>
+      <div class="container text-center">
+          <br/><br/><br/><br/><br/><br/><br/><br/>
+          <p>Copyright &copy; Filipe Silvestre, Samantha Maturen, Alex Costa, Jeff Austin, Tyler Deem, Marcos Moncivais 2015</p>
+          <p>Toilet Man by <a href="http://www.freepik.com">Freepik</a>, generated from <a href="http://www.flaticon.com">flaticon.com</a></p>
+      </div>
     </footer>
 
     <!-- jQuery -->
