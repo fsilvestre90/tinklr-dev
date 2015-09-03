@@ -275,23 +275,23 @@
             $this->assertEquals([$test_marker2], Marker::getAll());
         }
 
-        function testGetLatLngFromGoogleMaps()
-        {
-            $new_name = "Whiskey Soda Lounge";
-            $address = "808 Lenzen Ave, San Jose, California 95126";
-            $new_lat = null;
-            $new_lng = null;
-            $new_type = "Bar";
+        // function testGetLatLngFromGoogleMaps()
+        // {
+        //     $new_name = "Whiskey Soda Lounge";
+        //     $address = "808 Lenzen Ave, San Jose, California 95126";
+        //     $new_lat = null;
+        //     $new_lng = null;
+        //     $new_type = "Bar";
 
-            $test_marker = new Marker($new_name, $address, $new_lat, $new_lng, $new_type);
-            $test_marker->getLatLngFromGoogleMaps($address);
+        //     $test_marker = new Marker($new_name, $address, $new_lat, $new_lng, $new_type);
+        //     $test_marker->getLatLngFromGoogleMaps($address);
 
-            $lat = 37.3356939;
-            $lng = -121.910392;
+        //     $lat = 37.3356939;
+        //     $lng = -121.910392;
 
-            $result = [$test_marker->getLat(), $test_marker->getLng()];
+        //     $result = [$test_marker->getLat(), $test_marker->getLng()];
 
-            $this->assertEquals([$lat, $lng], $result);
-        }
+        //     $this->assertEquals([$lat, $lng], $result);
+        // }
     }
 ?>
