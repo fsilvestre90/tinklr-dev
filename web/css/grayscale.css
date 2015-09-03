@@ -279,6 +279,10 @@ a:focus {
     margin-top: 100px;
 }
 
+.infowindow-text {
+    color:black;
+}
+
 @media(min-width:767px) {
     .content-section {
         padding-top: 250px;
