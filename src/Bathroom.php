@@ -168,15 +168,15 @@
 
 		function addReview($review_id)
         {
-            $GLOBALS['DB']->exec("INSERT INTO bathrooms_reviews (bathroom_id, review_id) VALUES ({$this->getId()}, {$review_id});");
+            $GLOBALS['DB']->exec("INSERT INTO reviews_bathrooms (bathroom_id, review_id) VALUES ({$this->getId()}, {$review_id});");
         }
 
         function getReviews()
         {
             $returned_reviews = $GLOBALS['DB']->query("SELECT reviews.* FROM
-                reviews JOIN reviews_bathrooms ON (reviews.id = reviews_bathrooms.review_id)
-                JOIN bathrooms ON (bathrooms.id = reviews_bathrooms.bathroom_id)
-                WHERE bathrooms.id = {$this->getId()}");
+                bathrooms JOIN reviews_bathrooms ON (bathrooms.id = reviews_bathrooms.bathroom_id)
+                JOIN reviews ON (reviews_bathrooms.review_id = reviews.id)
+                WHERE bathrooms.id = {$this->getId()};");
 
             $reviews = array();
             foreach($returned_reviews as $review)

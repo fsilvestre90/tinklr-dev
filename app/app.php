@@ -46,12 +46,62 @@
             return $app['twig']->render('add_bathroom.html.twig');
         });
 
+/************************** Admin Area ***************************************/
+
+        // Admin sign-in
+        $app->get('/sign-in', function() use ($app){
+
+            return $app['twig']->render('admin_signin.html.twig');
+        });
+
         // Admin Page
         $app->get('/admin', function() use ($app){
-            //Dummy bathrooms
 
             return $app['twig']->render('admin.html.twig', array('bathrooms' => Bathroom::getAll(), 'markers' => Marker::getAll()));
         });
+
+        // Admin bathroom Page
+        $app->get('/admin_bathroom/{id}', function($id) use ($app) {
+            //Get all bathrooms
+            $bathrooms = Bathroom::getAll();
+
+            //Go through bathrooms and grab the one associated with the
+            ///marker ID
+            $found_bathroom = null;
+            foreach($bathrooms as $bathroom)
+            {
+                if($id == $bathroom->getMarkerId())
+                {
+                    $found_bathroom = $bathroom;
+                }
+            }
+            var_dump($bathrooms);
+
+            //Handle null values
+            if($found_bathroom->getUnisex == null)
+            {
+                $found_bathroom->setUnisex == 'No Data';
+            }
+            if($found_bathroom->getKey_required == null)
+            {
+                $found_bathroom->setKey_required == 'No Data';
+            }
+            if($found_bathroom->getPublic == null)
+            {
+                $found_bathroom->setPublic == 'No Data';
+            }
+            if($found_bathroom->getHandicap == null)
+            {
+                $found_bathroom->setHandicap == 'No Data';
+            }
+            if($found_bathroom->getChangingTable == null)
+            {
+                $found_bathroom->setChangingTable == 'No Data';
+            }
+
+            return $app['twig']->render('admin_bathroom.html.twig', array('bathroom' => $found_bathroom, 'marker' => Marker::find($id)));
+        });
+
 
         // Bathroom list
         $app->get('/bathroom/{id}', function($id) use ($app){
@@ -59,7 +109,7 @@
             $marker = Marker::find($id);
 
             return $app['twig']->render('bathroom.html.twig', array('bathroom' => $bathroom, 'marker' => $marker));
-        });
+
 
     return $app;
 

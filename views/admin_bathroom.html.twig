@@ -68,7 +68,7 @@
                         <a class="page-scroll" href="/add_bathroom">Add Bathroom</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="/sign-in">Admin</a>
+                        <a class="page-scroll" href="/login">Admin</a>
                     </li>
                 </ul>
             </div>
@@ -81,12 +81,12 @@
     <section id="search" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <h2>Bathrooms</h2>
-                <ul>
-                {% for marker in markers %}
-                    <li><a href="/admin_bathroom/{{marker.getId}}">{{marker.getName}}</a></li>
-                {% endfor %}
-                </ul>
+                <h2>{{marker.getName}}</h2>
+                <h3>Unisex:{{bathroom.getUnisex}}</h3>
+                <h3>Key:{{bathroom.getKey_required}}</h3>
+                <h3>Public:{{bathroom.getPublic}}</h3>
+                <h3>Handicap:{{bathroom.getHandicap}}</h3>
+                <h3>Changing Table:{{bathroom.getChangingTable}}</h3>
             </div>
         </div>
     </section>
