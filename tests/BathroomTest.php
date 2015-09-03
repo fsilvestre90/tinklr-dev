@@ -292,13 +292,13 @@
     		$test_bathroom2->save();
 
     		//Act
-    		$result = Bathroom::find($test_bathroom->getId());
+    		$result = Bathroom::find($test_bathroom->getMarkerId());
 
     		//Assert
     		$this->assertEquals($test_bathroom, $result);
 
     	}
-        
+
         function test_addReview()
         {
             $unisex = 0;
@@ -312,7 +312,7 @@
 
 
             $rating = 1;
-            $comment = "This place sucks!";   
+            $comment = "This place sucks!";
             $test_review = new Review($rating, $comment);
             $test_review->save();
 
@@ -320,7 +320,7 @@
 
             $this->assertEquals($test_bathroom->getReviews(), [$test_review]);
         }
-        
+
         function test_getReviews()
         {
             $unisex = 0;
@@ -331,14 +331,14 @@
             $marker_id = 2;
             $test_bathroom = new Bathroom($unisex, $key_required, $public, $handicap, $changing_table, $marker_id);
     		$test_bathroom->save();
-            
-            
+
+
             $rating = 1;
             $comment = "This place sucks!";
-    
+
             $test_review = new Review($rating, $comment);
             $test_review->save();
-            
+
             $rating2 = 3;
             $comment2 = "It's aight!";
             $test_review2 = new Review($rating2, $comment2);

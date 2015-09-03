@@ -145,7 +145,7 @@
 			$found_bathroom = null;
 			$bathrooms = Bathroom::getAll();
 			foreach($bathrooms as $bathroom) {
-				$bathroom_id = $bathroom->getId();
+				$bathroom_id = $bathroom->getMarkerId();
 				if ($bathroom_id == $search_id) {
 					$found_bathroom = $bathroom;
 				}
@@ -165,12 +165,12 @@
 			}
 			return $found_bathroom;
 		}
-		
+
 		function addReview($review_id)
         {
             $GLOBALS['DB']->exec("INSERT INTO bathrooms_reviews (bathroom_id, review_id) VALUES ({$this->getId()}, {$review_id});");
         }
-        
+
         function getReviews()
         {
             $returned_reviews = $GLOBALS['DB']->query("SELECT reviews.* FROM
@@ -181,7 +181,7 @@
             $reviews = array();
             foreach($returned_reviews as $review)
             {
-				$rating = $review['rating'];                
+				$rating = $review['rating'];
 				$comment = $review['comment'];
                 $id = $review['id'];
                 $new_review = new Review($rating, $comment, $id);
