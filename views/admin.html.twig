@@ -84,7 +84,11 @@
                 <h2>Bathrooms</h2>
                 <ul>
                 {% for marker in markers %}
-                    <li><a href="/admin_bathroom/{{marker.getId}}">{{marker.getName}}</a></li>
+                    <li><a href="/admin_bathroom/{{marker.getId}}">{{marker.getName}}</a><form action="/stylist/{{marker.getId}}" method="get">
+                        <div class="form-group">
+                            <button class="btn btn-primary" name="submit">Delete</button>
+                        </div>
+                    </form></li>
                 {% endfor %}
                 </ul>
             </div>
