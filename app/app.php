@@ -104,7 +104,7 @@
         });
 
 
->>>>>>> upstream/master
+
 
     return $app;
 
