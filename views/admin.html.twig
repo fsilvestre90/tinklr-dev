@@ -82,11 +82,9 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>Bathrooms</h2>
-                <ul>
                 {% for marker in markers %}
-                    <li><a href="/admin_bathroom/{{marker.getId}}">{{marker.getName}}</a></li>
+                    <p><a href="/admin_bathroom/{{marker.getId}}">{{marker.getName}}</a></p>
                 {% endfor %}
-                </ul>
             </div>
         </div>
     </section>
