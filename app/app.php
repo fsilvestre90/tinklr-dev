@@ -48,11 +48,18 @@
 
 /************************** Admin Area ***************************************/
 
+        // Admin sign-in
+        $app->get('/sign-in', function() use ($app){
+
+            return $app['twig']->render('admin_signin.html.twig');
+        });
+
         // Admin Page
         $app->get('/admin', function() use ($app){
 
             return $app['twig']->render('admin.html.twig', array('bathrooms' => Bathroom::getAll(), 'markers' => Marker::getAll()));
         });
+
 
         // Admin bathroom Page
         $app->get('/admin_bathroom/{id}', function($id) use ($app) {
@@ -97,6 +104,7 @@
         });
 
 
+>>>>>>> upstream/master
 
     return $app;
 
