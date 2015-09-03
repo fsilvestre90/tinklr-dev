@@ -53,6 +53,12 @@
             return $app['twig']->render('admin.html.twig', array('bathrooms' => Bathroom::getAll(), 'markers' => Marker::getAll()));
         });
 
+        // Admin sign-in
+        $app->get('/sign-in', function() use ($app){
+
+            return $app['twig']->render('admin_signin.html.twig');
+        });
+
 
     return $app;
 
