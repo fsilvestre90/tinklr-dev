@@ -46,11 +46,30 @@
             return $app['twig']->render('add_bathroom.html.twig');
         });
 
+/************************** Admin Area ***************************************/
+
         // Admin Page
         $app->get('/admin', function() use ($app){
-            //Dummy bathrooms
 
             return $app['twig']->render('admin.html.twig', array('bathrooms' => Bathroom::getAll(), 'markers' => Marker::getAll()));
+        });
+
+        // Admin bathroom Page
+        $app->get('/bathroom/{id}', function($id) use ($app) {
+            //Get all bathrooms
+            $bathrooms = Bathroom::getAll();
+
+            //Go through bathrooms and grab the one associated with the
+            ///marker ID
+            foreach($bathrooms as $bathroom)
+            {
+                if($id == $bathroom->getMarkerId())
+                {
+                    $found_bathroom = $bathroom;
+                }
+            }
+
+            return $app['twig']->render('admin_bathroom.html.twig', array('bathroom' => $found_bathroom));
         });
 
 
