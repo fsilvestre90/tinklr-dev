@@ -47,7 +47,7 @@ class Review
 
     function save()
     {
-        $GLOBALS['DB']->exec("INSERT INTO reviews (rating, description) VALUES ({$this->getRating()}, '{$this->getComment()}'); ");
+        $GLOBALS['DB']->exec("INSERT INTO reviews (rating, comment) VALUES ({$this->getRating()}, '{$this->getComment()}'); ");
 
         $this->id = $GLOBALS['DB']->lastInsertId();
     }
@@ -59,7 +59,7 @@ class Review
             foreach($returned_reviews as $review) {
                 $rating = $review['rating'];
                 $id = $review['id'];
-                $comment = $review['description'];
+                $comment = $review['comment'];
                 $new_review = new Review($rating, $comment, $id);
                 array_push($reviews, $new_review);
             }
@@ -95,7 +95,7 @@ class Review
     /**************** UPDATE ***********************/
     function updateReview($new_comment)
     {
-        $GLOBALS['DB']->exec("UPDATE reviews SET description = {$new_comment} WHERE id = {$this->getId()}");
+        $GLOBALS['DB']->exec("UPDATE reviews SET comment = {$new_comment} WHERE id = {$this->getId()}");
         $this->setComment($new_comment);
     }
 

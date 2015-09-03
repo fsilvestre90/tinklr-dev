@@ -6,6 +6,7 @@
     */
 
     require_once "src/Bathroom.php";
+    require_once "src/Review.php";
 
 
 	$server = 'mysql:host=localhost:8889;dbname=tinklr_test';
@@ -18,6 +19,7 @@
     	protected function tearDown()
     	{
     		Bathroom::deleteAll();
+            Review::deleteAll();
     	}
 
     	function test_getunisex()
@@ -296,4 +298,56 @@
     		$this->assertEquals($test_bathroom, $result);
 
     	}
+        
+        function test_addReview()
+        {
+            $unisex = 0;
+    		$key_required = 0;
+    		$public = 0;
+    		$handicap = 0;
+    		$changing_table = 0;
+            $marker_id = 2;
+    		$test_bathroom = new Bathroom($unisex, $key_required, $public, $handicap, $changing_table, $marker_id);
+    		$test_bathroom->save();
+
+
+            $rating = 1;
+            $comment = "This place sucks!";
+    
+            $test_review = new Review($rating, $comment);
+            $test_review->save();
+
+            $test_bathroom->addReview($test_review->getId());
+
+            $this->assertEquals($test_bathroom->getReviews(), [$test_review]);
+        }
+        
+        function test_getReviews()
+        {
+            $unisex = 0;
+    		$key_required = 0;
+    		$public = 0;
+    		$handicap = 0;
+    		$changing_table = 0;
+            $marker_id = 2;
+    		$id = 1;
+    		$test_bathroom = new Bathroom($unisex, $key_required, $public, $handicap, $changing_table, $marker_id);
+    		$test_bathroom->save();
+            
+            
+            $rating = 1;
+            $comment = "This place sucks!";
+    
+            $test_review = new Review($rating, $comment);
+            $test_review->save();
+            
+            $rating2 = 3;
+            $comment2 = "It's aight!";
+            $test_review2 = new Review($rating2, $comment2);
+
+            $test_bathroom->addReview($test_review->getId());
+            $test_bathroom->addReview($test_review2->getId());
+
+            $this->assertEquals($test_bathroom->getReviews(), [$test_review2, $test_review]);
+        }
     }
