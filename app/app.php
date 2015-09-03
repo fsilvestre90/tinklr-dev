@@ -75,7 +75,6 @@
                     $found_bathroom = $bathroom;
                 }
             }
-            var_dump($bathrooms);
 
             //Handle null values
             if($found_bathroom->getUnisex == null)
