@@ -312,8 +312,7 @@
 
 
             $rating = 1;
-            $comment = "This place sucks!";
-    
+            $comment = "This place sucks!";   
             $test_review = new Review($rating, $comment);
             $test_review->save();
 
@@ -330,8 +329,7 @@
     		$handicap = 0;
     		$changing_table = 0;
             $marker_id = 2;
-    		$id = 1;
-    		$test_bathroom = new Bathroom($unisex, $key_required, $public, $handicap, $changing_table, $marker_id);
+            $test_bathroom = new Bathroom($unisex, $key_required, $public, $handicap, $changing_table, $marker_id);
     		$test_bathroom->save();
             
             
