@@ -56,7 +56,7 @@
                         <a class="page-scroll" href="/about">About</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="/add_bathroom">Add Bathroom</a>
+                        <a class="page-scroll" href="/bathroom_form">Add Bathroom</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="/login">Admin</a>
@@ -69,9 +69,11 @@
     </nav>
 
     <!-- Add Bathroom Section -->
-    <section id="search" class="container content-section text-center">
+        <section id="search" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
+    {% if form_check == true %}
+
                 <h2>Add a bathroom to our database:</h2>
 
                 <form class="form-inline" type="post">
@@ -125,6 +127,19 @@
 						<button type="submit" class="btn btn-success">Add</button>
 					</div>
 				</form>
+            {% endif %}
+            
+            {% if markers is not empty %}
+                <h4>List of bathrooms:</h4>
+                    {% for marker in markers %}
+                        <li><h5><strong><a href="/markers/{{ marker.getId }}">{{ marker.getName }}</a></strong></h5></li>
+                        <li><h5><strong>{{ marker.getAddress }}</strong></h5></li>
+                        <li><h5><strong>{{ marker.getType }}</strong></h5></li>
+                    {% endfor %}
+            {% else %}
+                <h3>There are no bathrooms listed yet!</h3>
+            {% endif %}
+            
                 <br/><br/>
                 <form class="form-inline">
                     <div class="form-group">
