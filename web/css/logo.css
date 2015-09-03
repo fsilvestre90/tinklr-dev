@@ -1,0 +1,15 @@
+ul {
+    list-style-type: none;
+    text-align: center;
+}
+li {
+    font-size: 1.4em;
+}
+.navbar-brand{
+    font-family: 'Poppins', sans-serif;
+    text-transform: lowercase;
+    font-size: 3em;
+}
+.t{
+    font-size: 1.5em;
+}
