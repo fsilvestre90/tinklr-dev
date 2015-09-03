@@ -136,7 +136,10 @@
 				position: latlng
 			});
             var infowindow = new google.maps.InfoWindow({ // Create a new InfoWindow
-                content:'<div class ="infowindow-text">Snowdown Summit Cafe</div>' // HTML contents of the InfoWindow
+                content:'<div class ="infowindow-text">' +
+                                           '<h4>' + name + '</h4>' +
+                                           '<p>'+ address +'</p>' +
+                        '</div>' // HTML contents of the InfoWindow
             });
             google.maps.event.addListener(marker, 'click', function() { // Add a Click Listener to our marker
                 infowindow.open(map,marker); // Open our InfoWindow
