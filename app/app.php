@@ -109,7 +109,7 @@
             $marker = Marker::find($id);
 
             return $app['twig']->render('bathroom.html.twig', array('bathroom' => $bathroom, 'marker' => $marker));
-
+        });
 
     return $app;
 
