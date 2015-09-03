@@ -103,6 +103,26 @@
 
 
         // Bathroom list
+        $app->get('/bathrooms', function() use($app) {
+
+            return $app['twig']->render('add_bathroom.html.twig', array('bathrooms' => Bathroom::getAll(), 'markers' => Marker::getAll(), 'form_check' => false));
+        });
+        
+        $app->get('/bathroom_form', function() use($app) {
+
+            return $app['twig']->render('add_bathroom.html.twig', array('bathrooms' => Bathroom::getAll(), 'markers' => Marker::getAll(), 'form_check' => true));
+        });
+        
+        $app->post("/add_bathroom", function() use ($app) {
+            $marker = new Marker($_POST['name'], $_POST['address'], $_POST['type']);
+            $marker->save();
+    
+            $bathroom = new Bathroom($_POST['unisex'], $_POST['key_required'], $_POST['public'], $_POST['handicap'], $_POST['changing_table'],$_POST['marker_id']);
+            $bathroom->save();
+    
+            return $app['twig']->render('add_bathroom.html.twig', array('bathrooms' => Bathroom::getAll(), 'markers' => Marker::getAll(), 'form_check' => false));
+        });
+        
         $app->get('/bathroom/{id}', function($id) use ($app){
             $bathroom = Bathroom::find($id);
             $marker = Marker::find($id);
