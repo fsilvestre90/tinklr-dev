@@ -20,7 +20,9 @@ try{
 
     // Search the rows in the markers table
     try{
-        $result_markers = $GLOBALS['DB']->query("SELECT address, name, lat, lng, ( 3959 * acos( cos( radians('$center_lat') ) * cos( radians( lat ) ) * cos( radians( lng ) - radians('$center_lng') ) + sin( radians('$center_lat') ) * sin( radians( lat ) ) ) ) AS distance FROM markers HAVING distance < '$radius' ORDER BY distance LIMIT 0 , 20;");
+        $result_markers = $GLOBALS['DB']->query("SELECT id, address, name, lat, lng, ( 3959 * acos( cos( radians('$center_lat') ) * cos( radians( lat ) ) * cos( radians( lng ) - radians('$center_lng') ) + sin( radians('$center_lat') ) * sin( radians( lat ) ) ) )
+                                                        AS distance
+                                                FROM markers HAVING distance < '$radius' ORDER BY distance LIMIT 0 , 20;");
     } catch (PDOException $e) {
         echo "There was an error: " . $e->getMessage();
     }
@@ -29,6 +31,7 @@ try{
     // Iterate through the rows, adding XML nodes for each
     foreach($result_markers as $marker)
     {
+        $id = $marker['id'];
         $name = $marker['name'];
         $address = $marker['address'];
         $lat = $marker['lat'];
@@ -37,6 +40,7 @@ try{
 
         $node = $dom->createElement("marker");
         $newnode = $parnode->appendChild($node);
+        $newnode->setAttribute("id", $id);
         $newnode->setAttribute("name", $name);
         $newnode->setAttribute("address", $address);
         $newnode->setAttribute("lat", $lat);

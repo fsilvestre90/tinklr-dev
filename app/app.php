@@ -54,6 +54,7 @@
             return $app['twig']->render('admin.html.twig', array('bathrooms' => Bathroom::getAll(), 'markers' => Marker::getAll()));
         });
 
+<<<<<<< HEAD
         // Admin bathroom Page
         $app->get('/admin_bathroom/{id}', function($id) use ($app) {
             //Get all bathrooms
@@ -96,6 +97,14 @@
             return $app['twig']->render('admin_bathroom.html.twig', array('bathroom' => $found_bathroom, 'marker' => Marker::find($id)));
         });
 
+=======
+        // Admin Page
+        $app->get('/admin_bathroom/{id}', function($id) use ($app){
+            $bathroom = Bathroom::find($id);
+
+            return $app['twig']->render('admin.html.twig', array('bathroom' => $bathroom));
+        });
+>>>>>>> 803968f9bb370f748afd2c639e5a58e5753d63bb
 
     return $app;
 
