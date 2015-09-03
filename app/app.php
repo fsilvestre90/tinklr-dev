@@ -126,8 +126,9 @@
         $app->get('/bathroom/{id}', function($id) use ($app){
             $bathroom = Bathroom::find($id);
             $marker = Marker::find($id);
+            $reviews = Review::getReviewsForBathroom($bathroom);
 
-            return $app['twig']->render('bathroom.html.twig', array('bathroom' => $bathroom, 'marker' => $marker));
+            return $app['twig']->render('bathroom.html.twig', array('bathroom' => $bathroom, 'marker' => $marker, 'reviews' => $reviews));
         });
 
     return $app;
