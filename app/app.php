@@ -56,7 +56,7 @@
 
         // Admin Page
         $app->get('/admin', function() use ($app){
-            var_dump("SHIT");
+
             return $app['twig']->render('admin.html.twig', array('bathrooms' => Bathroom::getAll(), 'markers' => Marker::getAll()));
         });
 
