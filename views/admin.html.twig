@@ -83,7 +83,13 @@
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>Bathrooms</h2>
                 {% for marker in markers %}
-                    <p><a href="/admin_bathroom/{{marker.getId}}">{{marker.getName}}</a></p>
+
+                    <li><a href="/admin_bathroom/{{marker.getId}}">{{marker.getName}}</a><form action="/stylist/{{marker.getId}}" method="get">
+                        <div class="form-group">
+                            <button class="btn btn-primary" name="submit">Delete</button>
+                        </div>
+                    </form></li>
+
                 {% endfor %}
             </div>
         </div>
