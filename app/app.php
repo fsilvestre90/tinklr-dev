@@ -100,7 +100,11 @@
         
         $app->post('/add_bathroom', function() use($app) {
             $name = $_POST['name'];
-            $address = $_POST['address'];
+            $street_address = $_POST['address'];
+            $city = $_POST['city'];
+            $state = $_POST['state'];
+            $zip_code = $_POST['zip_code'];
+            $address = $street_address . ", " . $city . ", " . $state . " " . $zip_code;
             $type = $_POST['type'];
             $marker = new Marker($name, $address, null, null, $type);
             
