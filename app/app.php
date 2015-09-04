@@ -97,11 +97,25 @@
             return $app['twig']->render('add_bathroom.html.twig', array('bathrooms' => Bathroom::getAll(), 'markers' => Marker::getAll(), 'form_check' => true));
         });
 
-        $app->post("/add_bathroom", function() use ($app) {
-            $marker = new Marker($_POST['name'], $_POST['address'], $_POST['type']);
+        
+        $app->post('/add_bathroom', function() use($app) {
+            $name = $_POST['name'];
+            $address = $_POST['address'];
+            $type = $_POST['type'];
+            $marker = new Marker($name, $address, null, null, $type);
+            
+            $marker->getLatLngFromGoogleMaps($address);
             $marker->save();
 
-            $bathroom = new Bathroom($_POST['unisex'], $_POST['key_required'], $_POST['public'], $_POST['handicap'], $_POST['changing_table'],$_POST['marker_id']);
+            
+            $unisex = $_POST['unisex'];
+            $key_required = $_POST['key_required']; 
+            $public = $_POST['public'];
+            $handicap = $_POST['handicap'];
+            $changing_table = $_POST['changing_table'];
+            $marker_id = $marker->getId();
+            
+            $bathroom = new Bathroom($unisex, $key_required, $public ,$handicap, $changing_table, $marker_id);
             $bathroom->save();
 
             return $app['twig']->render('add_bathroom.html.twig', array('bathrooms' => Bathroom::getAll(), 'markers' => Marker::getAll(), 'form_check' => false));
