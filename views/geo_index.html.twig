@@ -76,21 +76,8 @@
 		});
 
         // GET CURRENT POSITION //
-        navigator.geolocation.getCurrentPosition(function(position) {
-		    var geolocate = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
-    		// var infowindow = new google.maps.InfoWindow({
-    		// 	map: map,
-    		// 	position: geolocate,
-    		// 	content:
-    		// 		'<h1 class="map-canvas">Location pinned from HTML5 Geolocation!</h1>' +
-    		// 		'<h2 class="map-canvas">Latitude: ' + position.coords.latitude + '</h2>' +
-    		// 		'<h2 class="map-canvas">Longitude: ' + position.coords.longitude + '</h2>'
-    		// });
 
-    		map.setCenter(geolocate);
-
-	    });
 
 
 		infoWindow = new google.maps.InfoWindow();
@@ -104,17 +91,34 @@
 		};
 	}
 
-    // function currentLocation() {
-    //     var address = document.getElementById("addressInput").value;
-	// 	var geocoder = new google.maps.Geocoder();
-	// 	geocoder.geocode({address: address}, function(results, status) {
-	// 		if (status == google.maps.GeocoderStatus.OK) {
-	// 			searchLocationsNear(results[0].geometry.location);
-	// 		} else {
-	// 			alert(address + ' not found');
-	// 		}
-	// 	});
-    // }
+    function currentLocation() {
+        var address =  navigator.geolocation.getCurrentPosition(function(position) {
+        		    var geolocate = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+            		var infowindow = new google.maps.InfoWindow({
+            			map: map,
+            			position: geolocate,
+            			content:
+            				'<h1>Location pinned from HTML5 Geolocation!</h1>' +
+            				'<h2>Latitude: ' + position.coords.latitude + '</h2>' +
+            				'<h2>Longitude: ' + position.coords.longitude + '</h2>'
+            		});
+
+            		map.setCenter(geolocate);
+
+        	    });
+
+
+
+		var geocoder = new google.maps.Geocoder();
+		geocoder.geocode({address: address}, function(results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+				searchLocationsNear(results[0].geometry.location);
+			} else {
+				alert(address + ' not found');
+			}
+		});
+    }
 
 	function searchLocations() {
 		var address = document.getElementById("addressInput").value;
@@ -253,6 +257,9 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
+                        <a class="page-scroll" href="/about">About</a>
+                    </li>
+                    <li>
                         <a class="page-scroll" href="/bathrooms">View Bathrooms</a>
                     </li>
                     <li>
@@ -296,6 +303,7 @@
 							<option value="10">10mi</option>
 						</select>
 						<input class="btn btn-primary btn-block" type="button" onclick="searchLocations()" value="Search"/>
+                        <input class="btn btn-primary btn-block" type="button" onclick="currentLocation()" value="Current"/>
 					</div>
 				</form>
                 <br/><br/>
@@ -314,8 +322,8 @@
     <!-- Footer -->
     <footer>
         <div class="container text-center">
-            <p>&copy; 2015 Filipe Silvestre, Samantha Maturen, Alex Costa, Jeff Austin, Tyler Deem, Marcos Moncivais</p>
-            <p>Toilet Man by <a href="http://www.freepik.com">Freepik</a> from <a href="http://www.flaticon.com">flaticon.com</a></p>
+            <p>Copyright &copy; Filipe Silvestre, Samantha Maturen, Alex Costa, Jeff Austin, Tyler Deem, Marcos Moncivais 2015</p>
+            <p>Toilet Man by <a href="http://www.freepik.com">Freepik</a>, generated from <a href="http://www.flaticon.com">flaticon.com</a></p>
         </div>
     </footer>
 
