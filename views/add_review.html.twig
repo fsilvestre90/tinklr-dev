@@ -11,6 +11,7 @@
 
     <title>Tinklr Demo</title>
 
+
     <!-- Bootstrap Core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 
@@ -30,9 +31,17 @@
 
     <!-- Admin CSS -->
     <link rel="stylesheet" href="/css/logo.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 </head>
 
-<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" style="margin:0px; padding:0px;" onload="load()">
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
     <!-- Navigation -->
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
@@ -60,7 +69,7 @@
                         <a class="page-scroll" href="/add_bathroom">Add Bathroom</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="/login">Admin</a>
+                        <a class="page-scroll" href="/sign-in">Admin</a>
                     </li>
                 </ul>
             </div>
@@ -69,91 +78,32 @@
         <!-- /.container -->
     </nav>
 
-    <!-- Bathroom Information Section -->
+    <!-- Admin Section -->
     <section id="search" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <!-- Maybe we can put some info here about us or the purpose of Tinklr -->
-                <h1>{{ marker.getName }}</h1>
-                <h3>Address: {{ marker.getAddress }} (<small>{{ marker.getType }}</small>)</h3>
-            </div>
-            <div class="col-lg-8 col-lg-offset-2">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Public</th>
-                            <th>Unisex</th>
-                            <th>Changing Table</th>
-                            <th>Handicap</th>
-                            <th>Key Required</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                {% if bathroom.getPublic == 1 %}
-                                    <b>YES</b>
-                                {% else %}
-                                    <b>NO</b>
-                                {%  endif %}
-                            </td>
-                            <td>
-                                {% if bathroom.getUnisex == 1 %}
-                                    <b>YES</b>
-                                {% else %}
-                                    <b>NO</b>
-                                {%  endif %}
-                            </td>
-                            <td>
-                                {% if bathroom.getChangingTable == 1 %}
-                                    <b>YES</b>
-                                {% else %}
-                                    <b>NO</b>
-                                {%  endif %}
-                            </td>
-                            <td>
-                                {% if bathroom.getHandicap == 1 %}
-                                    <b>YES</b>
-                                {% else %}
-                                    <b>NO</b>
-                                {%  endif %}
-                            </td>
-                            <td>
-                                {% if bathroom.getKey_required == 1 %}
-                                    <b>YES</b>
-                                {% else %}
-                                    <b>NO</b>
-                                {%  endif %}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <h2>Tell us what you think of {{ marker.getName }}!</h2>
+                <form class="form" action="/add_review/{{ marker.getId }}" method="post">
+					<div class="form-group">
+                        <label for="review"></label>
+						<input name="review" class="form-control" placeholder="add a review here...."
+                        type="text" id="review"/ required></br>
+                        <label for="rating">Rate this bathroom: </label>
+                        <select name="rating">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        </label>
+                    </br><input type="submit" class="btn btn-info" value="Submit">
+                    </div>
+                </form>
             </div>
         </div>
     </section>
 
-
-    <!-- Bathroom Information Section -->
-    <section id="search" class="container content-section text-center">
-        <div class="row">
-            <div class="col-md-8 col-lg-offset-2">
-                <!-- Maybe we can put some info here about us or the purpose of Tinklr -->
-                <h1>Reviews</h1>
-                <h5><a href="/add_review/{{ marker.getId }}">click to a review</a></h5>
-                {% if reviews is not empty %}
-                    {% for review in reviews %}
-                        <hr><p>
-                            {{review.getComment}}
-                        </p>
-                        <p>
-                            Rating: {{ review.getRating }}
-                        </p>
-                    {% endfor %}
-                {% else %}
-                <h2>No reviews yet!</h2>
-                {% endif %}
-            </div>
-    </section>
     <!-- Footer -->
     <footer>
         <div class="container text-center">

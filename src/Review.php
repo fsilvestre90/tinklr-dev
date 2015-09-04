@@ -80,6 +80,25 @@ class Review
         return $found_review;
     }
 
+    static function getReviewsForBathroom($bathroom)
+    {
+        $result_reviews = $GLOBALS['DB']->query("SELECT reviews.* FROM bathrooms
+                                                    JOIN reviews_bathrooms ON (bathrooms.id = reviews_bathrooms.bathroom_id)
+                                                    JOIN reviews ON (reviews_bathrooms.review_id = reviews.id)
+                                                WHERE bathrooms.id = {$bathroom->getId()};");
+        $reviews = array();
+        foreach($result_reviews as $review)
+        {
+            $rating = $review['rating'];
+            $id = $review['id'];
+            $comment = $review['comment'];
+            $new_review = new Review($rating, $comment, $id);
+            array_push($reviews, $new_review);
+        }
+            return $reviews;
+    }
+
+
     /************** DELETE ***************************/
     function deleteReview()
     {

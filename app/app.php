@@ -61,9 +61,10 @@
         });
 
         // Admin bathroom Page
-        $app->get('/admin_bathroom/{id}', function($id) use ($app) {
+        $app->get('/admin_delete/{id}', function($id) use ($app) {
             //Get all bathrooms
             $bathrooms = Bathroom::getAll();
+            $marker = Marker::find($id);
 
             //Go through bathrooms and grab the one associated with the
             ///marker ID
@@ -75,31 +76,13 @@
                     $found_bathroom = $bathroom;
                 }
             }
-            var_dump($bathrooms);
 
-            //Handle null values
-            if($found_bathroom->getUnisex == null)
-            {
-                $found_bathroom->setUnisex == 'No Data';
-            }
-            if($found_bathroom->getKey_required == null)
-            {
-                $found_bathroom->setKey_required == 'No Data';
-            }
-            if($found_bathroom->getPublic == null)
-            {
-                $found_bathroom->setPublic == 'No Data';
-            }
-            if($found_bathroom->getHandicap == null)
-            {
-                $found_bathroom->setHandicap == 'No Data';
-            }
-            if($found_bathroom->getChangingTable == null)
-            {
-                $found_bathroom->setChangingTable == 'No Data';
-            }
+            //DESTROY!!!!!!
+            $bathroom->delete();
+            $marker->delete();
 
-            return $app['twig']->render('admin_bathroom.html.twig', array('bathroom' => $found_bathroom, 'marker' => Marker::find($id)));
+            return $app['twig']->render('admin.html.twig', array('bathrooms' => Bathroom::getAll(), 'markers' => Marker::getAll()));
+
         });
 
 
@@ -108,11 +91,12 @@
 
             return $app['twig']->render('add_bathroom.html.twig', array('bathrooms' => Bathroom::getAll(), 'markers' => Marker::getAll(), 'form_check' => false));
         });
-        
+
         $app->get('/bathroom_form', function() use($app) {
 
             return $app['twig']->render('add_bathroom.html.twig', array('bathrooms' => Bathroom::getAll(), 'markers' => Marker::getAll(), 'form_check' => true));
         });
+
         
         $app->post('/add_bathroom', function() use($app) {
             $name = $_POST['name'];
@@ -133,15 +117,42 @@
             
             $bathroom = new Bathroom($unisex, $key_required, $public ,$handicap, $changing_table, $marker_id);
             $bathroom->save();
-    
+
             return $app['twig']->render('add_bathroom.html.twig', array('bathrooms' => Bathroom::getAll(), 'markers' => Marker::getAll(), 'form_check' => false));
         });
-        
+
         $app->get('/bathroom/{id}', function($id) use ($app){
             $bathroom = Bathroom::find($id);
             $marker = Marker::find($id);
+            $reviews = Review::getReviewsForBathroom($bathroom);
 
-            return $app['twig']->render('bathroom.html.twig', array('bathroom' => $bathroom, 'marker' => $marker));
+            return $app['twig']->render('bathroom.html.twig', array('bathroom' => $bathroom, 'marker' => $marker, 'reviews' => $reviews));
+        });
+
+
+        // reviews
+
+        $app->get('/add_review/{id}', function($id) use ($app){
+            $marker = Marker::find($id);
+
+            return $app['twig']->render('add_review.html.twig', array('marker' => $marker));
+        });
+
+        $app->post('/add_review/{id}', function($id) use ($app){
+            $review = $_POST['review'];
+            $rating = $_POST['rating'];
+            //get all the necessary objects
+            $marker = Marker::find($id);
+            $bathroom = Bathroom::find($marker->getId());
+            //create new review obj
+            $new_review = new Review($rating, $review);
+            $new_review->save();
+            $review_id = $new_review->getId();
+            $bathroom->addReview($review_id);
+
+            $reviews = Review::getReviewsForBathroom($bathroom);
+
+            return $app['twig']->render('bathroom.html.twig', array('bathroom' => $bathroom, 'marker' => $marker, 'reviews' => $reviews));
         });
 
     return $app;
