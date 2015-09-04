@@ -143,12 +143,15 @@
         $app->post('/add_review/{id}', function($id) use ($app){
             $review = $_POST['review'];
             $rating = $_POST['rating'];
-            $new_review = new Review($rating, $review);
-            $new_review->save();
-
+            //get all the necessary objects
             $marker = Marker::find($id);
             $bathroom = Bathroom::find($marker->getId());
-            var_dump($bathroom);
+            //create new review obj
+            $new_review = new Review($rating, $review);
+            $new_review->save();
+            $review_id = $new_review->getId();
+            $bathroom->addReview($review_id);
+
             $reviews = Review::getReviewsForBathroom($bathroom);
 
             return $app['twig']->render('bathroom.html.twig', array('bathroom' => $bathroom, 'marker' => $marker, 'reviews' => $reviews));

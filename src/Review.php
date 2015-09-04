@@ -98,19 +98,7 @@ class Review
             return $reviews;
     }
 
-    function getStores()
-    {
 
-        $stores = array();
-        foreach($result_stores as $store)
-        {
-            $id = $store['id'];
-            $store_name = $store['store_name'];
-            $new_store = new Store($store_name, $id);
-            array_push($stores, $new_store);
-        }
-        return $stores;
-    }
     /************** DELETE ***************************/
     function deleteReview()
     {
