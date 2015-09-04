@@ -57,7 +57,7 @@
                         <a class="page-scroll" href="/about">About</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="/add_bathroom">Add Bathroom</a>
+                        <a class="page-scroll" href="/bathrooms">View Bathrooms</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="/login">Admin</a>
@@ -75,7 +75,8 @@
             <div class="col-lg-8 col-lg-offset-2">
                 <!-- Maybe we can put some info here about us or the purpose of Tinklr -->
                 <h1>{{ marker.getName }}</h1>
-                <h3>Address: {{ marker.getAddress }} (<small>{{ marker.getType }}</small>)</h3>
+                <h4>(This is a {{ marker.getType }})</h4>
+                <h3>Address: {{ marker.getAddress }}</h3>
             </div>
             <div class="col-lg-8 col-lg-offset-2">
                 <table class="table">

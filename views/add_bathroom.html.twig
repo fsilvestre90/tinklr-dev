@@ -76,7 +76,7 @@
 
                 <h2>Add a bathroom to our database:</h2>
 
-                <form class="form-inline" type="post">
+                <form class="form-inline" method="post">
 					<div class="form-group">
 
                         <!-- Input field for text -->
@@ -130,9 +130,9 @@
             {% endif %}
 
             {% if markers is not empty %}
-                <h4>List of bathrooms:</h4>
+                <h2>List of bathrooms:</h2>
                     {% for marker in markers %}
-                        <li><h5><strong><a href="/bathroom/{{ marker.getId }}">{{ marker.getName }}</a></strong></h5></li>
+                        <hr><li><h5><strong><a href="/bathroom/{{ marker.getId }}">{{ marker.getName }}</a></strong></h5></li>
                         <li><h5><strong>{{ marker.getAddress }}</strong></h5></li>
                         <li><h5><strong>{{ marker.getType }}</strong></h5></li>
                     {% endfor %}
