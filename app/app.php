@@ -56,26 +56,15 @@
 
         // Admin Page
         $app->get('/admin', function() use ($app){
-
+            var_dump("SHIT");
             return $app['twig']->render('admin.html.twig', array('bathrooms' => Bathroom::getAll(), 'markers' => Marker::getAll()));
         });
 
         // Admin bathroom Page
         $app->get('/admin_delete/{id}', function($id) use ($app) {
             //Get all bathrooms
-            $bathrooms = Bathroom::getAll();
             $marker = Marker::find($id);
-
-            //Go through bathrooms and grab the one associated with the
-            ///marker ID
-            $found_bathroom = null;
-            foreach($bathrooms as $bathroom)
-            {
-                if($id == $bathroom->getMarkerId())
-                {
-                    $found_bathroom = $bathroom;
-                }
-            }
+            $bathroom = Bathroom::find($marker->getId());
 
             //DESTROY!!!!!!
             $bathroom->delete();
@@ -97,24 +86,24 @@
             return $app['twig']->render('add_bathroom.html.twig', array('bathrooms' => Bathroom::getAll(), 'markers' => Marker::getAll(), 'form_check' => true));
         });
 
-        
+
         $app->post('/add_bathroom', function() use($app) {
             $name = $_POST['name'];
             $address = $_POST['address'];
             $type = $_POST['type'];
             $marker = new Marker($name, $address, null, null, $type);
-            
+
             $marker->getLatLngFromGoogleMaps($address);
             $marker->save();
 
-            
+
             $unisex = $_POST['unisex'];
-            $key_required = $_POST['key_required']; 
+            $key_required = $_POST['key_required'];
             $public = $_POST['public'];
             $handicap = $_POST['handicap'];
             $changing_table = $_POST['changing_table'];
             $marker_id = $marker->getId();
-            
+
             $bathroom = new Bathroom($unisex, $key_required, $public ,$handicap, $changing_table, $marker_id);
             $bathroom->save();
 

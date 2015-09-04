@@ -1,116 +1,173 @@
--- ---
--- Globals
--- ---
---
--- SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
--- SET FOREIGN_KEY_CHECKS=0;
-
--- ---
--- Table 'bathrooms'
---
--- ---
-
-DROP TABLE IF EXISTS `bathrooms`;
-
-CREATE TABLE `bathrooms` (
-  `id` BIGINT NOT NULL AUTO_INCREMENT,
-  `handicap` BINARY NULL DEFAULT NULL,
-  `unisex` BINARY NULL DEFAULT NULL,
-  `key_required` BINARY NULL DEFAULT NULL,
-  `changing_table` BINARY NULL DEFAULT NULL,
-  `public` BINARY NULL DEFAULT NULL,
-  `marker_id` INTEGER NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-);
-
--- ---
--- Table 'reviews'
---
--- ---
-
-DROP TABLE IF EXISTS `reviews`;
-
-CREATE TABLE `reviews` (
-  `id` BIGINT NOT NULL AUTO_INCREMENT,
-  `comment` VARCHAR(255) NULL DEFAULT NULL,
-  `rating` FLOAT NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-);
-
--- ---
--- Table 'reviews_bathrooms'
---
--- ---
-
-DROP TABLE IF EXISTS `reviews_bathrooms`;
-
-CREATE TABLE `reviews_bathrooms` (
-  `id` BIGINT NOT NULL AUTO_INCREMENT,
-  `bathroom_id` BIGINT NULL DEFAULT NULL,
-  `review_id` BIGINT NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-);
-
--- ---
--- Table 'reviews_markers'
---
--- ---
-
-DROP TABLE IF EXISTS `reviews_markers`;
-
-CREATE TABLE `reviews_markers` (
-  `id` BIGINT NOT NULL AUTO_INCREMENT,
-  `marker_id` BIGINT NULL DEFAULT NULL,
-  `review_id` BIGINT NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-);
-
--- ---
--- Table 'markers'
---
--- ---
-DROP TABLE IF EXISTS `markers`;
-
-CREATE TABLE `markers` (
-    `id` BIGINT NOT NULL AUTO_INCREMENT,
-    `name` VARCHAR( 60 ) NOT NULL ,
-    `address` VARCHAR( 80 ) NOT NULL ,
-    `lat` DECIMAL( 10, 6 ) NOT NULL ,
-    `lng` DECIMAL( 10, 6 ) NOT NULL,
-    `type` VARCHAR( 60 ) NOT NULL ,
-    PRIMARY KEY (`id`)
-);
-
--- ---
--- Foreign Keys
--- ---
-
-ALTER TABLE `reviews_bathrooms` ADD FOREIGN KEY (bathroom_id) REFERENCES `bathrooms` (`id`);
-ALTER TABLE `reviews_bathrooms` ADD FOREIGN KEY (review_id) REFERENCES `reviews` (`id`);
-ALTER TABLE `reviews_markers` ADD FOREIGN KEY (review_id) REFERENCES `reviews` (`id`);
-
-
--- ---
--- Foreign Keys
--- ---
-
-ALTER TABLE `reviews_bathrooms` ADD FOREIGN KEY (bathroom_id) REFERENCES `bathrooms` (`id`);
-ALTER TABLE `reviews_bathrooms` ADD FOREIGN KEY (review_id) REFERENCES `reviews` (`id`);
-ALTER TABLE `reviews_markers` ADD FOREIGN KEY (review_id) REFERENCES `reviews` (`id`);
-ALTER TABLE `reviews_markers` ADD FOREIGN KEY (marker_id) REFERENCES `reviews` (`id`);
-
--- ---
--- Table Properties
--- ---
-
--- ALTER TABLE `bathrooms` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
--- ALTER TABLE `reviews` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
--- ALTER TABLE `reviews_bathrooms` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
--- ALTER TABLE `reviews_markers` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
--- ALTER TABLE `markers` ENGINE=MYISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
+
+--
+-- Database: `tinklr`
+--
+CREATE DATABASE IF NOT EXISTS `tinklr` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `tinklr`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bathrooms`
+--
+
+DROP TABLE IF EXISTS `bathrooms`;
+CREATE TABLE `bathrooms` (
+  `id` bigint(20) NOT NULL,
+  `handicap` binary(1) DEFAULT NULL,
+  `unisex` binary(1) DEFAULT NULL,
+  `key_required` binary(1) DEFAULT NULL,
+  `changing_table` binary(1) DEFAULT NULL,
+  `public` binary(1) DEFAULT NULL,
+  `marker_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `markers`
+--
+
+DROP TABLE IF EXISTS `markers`;
+CREATE TABLE `markers` (
+  `id` bigint(20) NOT NULL,
+  `name` varchar(60) NOT NULL,
+  `address` varchar(80) NOT NULL,
+  `lat` decimal(10,6) NOT NULL,
+  `lng` decimal(10,6) NOT NULL,
+  `type` varchar(60) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reviews`
+--
+
+DROP TABLE IF EXISTS `reviews`;
+CREATE TABLE `reviews` (
+  `id` bigint(20) NOT NULL,
+  `comment` varchar(255) DEFAULT NULL,
+  `rating` float DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reviews_bathrooms`
+--
+
+DROP TABLE IF EXISTS `reviews_bathrooms`;
+CREATE TABLE `reviews_bathrooms` (
+  `id` bigint(20) NOT NULL,
+  `bathroom_id` bigint(20) DEFAULT NULL,
+  `review_id` bigint(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reviews_markers`
+--
+
+DROP TABLE IF EXISTS `reviews_markers`;
+CREATE TABLE `reviews_markers` (
+  `id` bigint(20) NOT NULL,
+  `marker_id` bigint(20) DEFAULT NULL,
+  `review_id` bigint(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `bathrooms`
+--
+ALTER TABLE `bathrooms`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `markers`
+--
+ALTER TABLE `markers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `reviews`
+--
+ALTER TABLE `reviews`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `reviews_bathrooms`
+--
+ALTER TABLE `reviews_bathrooms`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `bathroom_id` (`bathroom_id`),
+  ADD KEY `review_id` (`review_id`);
+
+--
+-- Indexes for table `reviews_markers`
+--
+ALTER TABLE `reviews_markers`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `review_id` (`review_id`),
+  ADD KEY `marker_id` (`marker_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `bathrooms`
+--
+ALTER TABLE `bathrooms`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `markers`
+--
+ALTER TABLE `markers`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `reviews`
+--
+ALTER TABLE `reviews`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `reviews_bathrooms`
+--
+ALTER TABLE `reviews_bathrooms`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `reviews_markers`
+--
+ALTER TABLE `reviews_markers`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `reviews_bathrooms`
+--
+ALTER TABLE `reviews_bathrooms`
+  ADD CONSTRAINT `reviews_bathrooms_ibfk_4` FOREIGN KEY (`review_id`) REFERENCES `reviews` (`id`),
+  ADD CONSTRAINT `reviews_bathrooms_ibfk_1` FOREIGN KEY (`bathroom_id`) REFERENCES `bathrooms` (`id`) ON DELETE CASCADE
+       ON UPDATE CASCADE,
+  ADD CONSTRAINT `reviews_bathrooms_ibfk_2` FOREIGN KEY (`review_id`) REFERENCES `reviews` (`id`),
+  ADD CONSTRAINT `reviews_bathrooms_ibfk_3` FOREIGN KEY (`bathroom_id`) REFERENCES `bathrooms` (`id`) ON DELETE CASCADE
+       ON UPDATE CASCADE;
+
+--
+-- Constraints for table `reviews_markers`
+--
+ALTER TABLE `reviews_markers`
+  ADD CONSTRAINT `reviews_markers_ibfk_3` FOREIGN KEY (`marker_id`) REFERENCES `reviews` (`id`),
+  ADD CONSTRAINT `reviews_markers_ibfk_1` FOREIGN KEY (`review_id`) REFERENCES `reviews` (`id`),
+  ADD CONSTRAINT `reviews_markers_ibfk_2` FOREIGN KEY (`review_id`) REFERENCES `reviews` (`id`);
 
 --
 -- Dumping data for table `markers`

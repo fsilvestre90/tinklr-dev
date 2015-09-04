@@ -131,7 +131,7 @@
             {% endif %}
 
             {% if markers is not empty %}
-                <h2>List of bathrooms:</h2>
+                <br><h2>List of bathrooms:</h2>
                     {% for marker in markers %}
                         <hr><li><h5><strong><a href="/bathroom/{{ marker.getId }}">{{ marker.getName }}</a></strong></h5></li>
                         <li><h5><strong>{{ marker.getAddress }}</strong></h5></li>
