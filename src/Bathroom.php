@@ -139,6 +139,10 @@
 		{
 			$GLOBALS['DB']->exec("DELETE FROM bathrooms;");
 		}
+		function delete()
+		{
+			$GLOBALS['DB']->exec("DELETE FROM bathrooms WHERE id = {$this->getId()};");
+		}
 
 		static function find($search_id)
 		{
