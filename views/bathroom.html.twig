@@ -17,7 +17,9 @@
     <!-- Custom CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-grayscale/1.0.4/css/grayscale.min.css" rel="stylesheet">
 
+
     <!-- Custom Fonts -->
+    <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
@@ -26,10 +28,20 @@
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet' type='text/css'>
 
     <!-- toilet man icon -->
+    <link rel="stylesheet" type="text/css" href="../MyIcons/flaticon.css">
     <link rel="stylesheet" type="text/css" href="MyIcons/flaticon.css">
 
     <!-- Admin CSS -->
-    <link rel="stylesheet" href="/css/logo.css">
+    <link rel="stylesheet" href="/../css/logo.css">
+    <link rel="stylesheet" href="css/logo.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 </head>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" style="margin:0px; padding:0px;" onload="load()">
@@ -52,9 +64,6 @@
                     <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
                     <li class="hidden">
                         <a href="#page-top"></a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="/about">About</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="/bathrooms">View Bathrooms</a>
@@ -129,21 +138,12 @@
                         </tr>
                     </tbody>
                 </table>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Bathroom Information Section -->
-    <section id="search" class="container content-section text-center">
-        <div class="row">
-            <div class="col-md-8 col-lg-offset-2">
-                <!-- Maybe we can put some info here about us or the purpose of Tinklr -->
-                <h1>Reviews</h1>
-                <h5><a href="/add_review/{{ marker.getId }}">click to a review</a></h5>
+                <br/><br/>
+                <h2>Reviews</h2>
+                <p><a href="/add_review/{{ marker.getId }}">Click to add a review</a></p>
                 {% if reviews is not empty %}
                     {% for review in reviews %}
-                        <hr><p>
+                        <hr width="50%"><p>
                             {{review.getComment}}
                         </p>
                         <p>
@@ -154,28 +154,35 @@
                 <h2>No reviews yet!</h2>
                 {% endif %}
             </div>
+        </div>
     </section>
+
+
     <!-- Footer -->
     <footer>
         <div class="container text-center">
-            <br/><br/><br/><br/><br/><br/>
-            <p>Copyright &copy; Filipe Silvestre, Samantha Maturen, Alex Costa, Jeff Austin, Tyler Deem 2015</p>
+            <p>&copy; 2015 Filipe Silvestre, Samantha Maturen, Alex Costa, Jeff Austin, Tyler Deem, Marcos Moncivais</p>
+            <p>Toilet Man by <a href="http://www.freepik.com">Freepik</a> from <a href="http://www.flaticon.com">flaticon.com</a></p>
         </div>
     </footer>
 
     <!-- jQuery -->
+    <script src="../js/jquery.js"></script>
     <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
+    <script src="../js/bootstrap.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
     <!-- Plugin JavaScript -->
+    <script src="../js/jquery.easing.min.js"></script>
     <script src="js/jquery.easing.min.js"></script>
 
     <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
 
     <!-- Custom Theme JavaScript -->
+    <script src="../js/grayscale.js"></script>
     <script src="js/grayscale.js"></script>
 
 </body>
