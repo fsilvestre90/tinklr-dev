@@ -84,32 +84,33 @@
                 <h2>Add a bathroom to our database:</h2>
 
                 <form action="/add_bathroom" class="form-inline" method="post">
-
 					   <div class="form-group">
-
-                        <!-- Input field for text -->
-
-                        <label for="name">Name</label>
-						<input name="name" class="form-control" placeholder="Name" type="text" id="name" size="10"/ required><br/>
-
-                        <label for="address">Street Address</label>
-						<input name="address" class="form-control" placeholder="Address" type="text" id="address" size="10"/ required><br/>
-
-                        <label for="city">City</label>
-						<input name="city" class="form-control" placeholder="City" type="text" id="city" size="10"/ required><br/>
-
-                        <label for="state">State</label>
-						<input name="state" class="form-control" placeholder="State" type="text" id="state" size="10"/ required><br/>
-
-                        <label for="zip_code">Zip Code</label>
-						<input name="zip_code" class="form-control" placeholder="Zip Code" type="text" id="zip_code" size="10"/ required><br/>
-
-                        <label for="type">Type</label>
-						<input name="type" class="form-control" placeholder="Type" type="text" id="type" size="10"/ required><br/>
-
-
+                            <label class="sr-only" for="name">Name</label>
+    						<input name="name" class="form-control" placeholder="Name" type="text" id="name" size="20" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="type">Type</label>
+    						<input name="type" class="form-control" placeholder="Type" type="text" id="type" size="10" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="address">Street Address</label>
+    						<input name="address" class="form-control" placeholder="Address" type="text" id="address" size="20" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="city">City</label>
+    						<input name="city" class="form-control" placeholder="City" type="text" id="city" size="10" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="state">State</label>
+    						<input name="state" class="form-control" placeholder="State" type="text" id="state" size="5" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="zip_code">Zip Code</label>
+    						<input name="zip_code" class="form-control" placeholder="Zip Code" type="text" id="zip_code" size="10" required>
+                        </div>
+                        <hr>
                         <!-- Example of drop down menu to select options -->
-
+                        <div class="form-group">
                         <label for="unisex">Unisex</label>
                         <select class="form-control" name="unisex">
 							<option value="0" selected>No</option>
@@ -139,11 +140,12 @@
 							<option value="0" selected>No</option>
 							<option value="1">Yes</option>
 						</select>
-
+                    </div>
                         <!-- Submit button, change onclick later -->
 						<button type="submit" class="btn btn-success">Add</button>
 					</div>
 				</form>
+                <br/><br/>
             {% endif %}
 
             {% if markers is not empty %}
