@@ -61,9 +61,10 @@
         });
 
         // Admin bathroom Page
-        $app->get('/admin_bathroom/{id}', function($id) use ($app) {
+        $app->get('/admin_delete/{id}', function($id) use ($app) {
             //Get all bathrooms
             $bathrooms = Bathroom::getAll();
+            $marker = Marker::find($id);
 
             //Go through bathrooms and grab the one associated with the
             ///marker ID
@@ -76,29 +77,12 @@
                 }
             }
 
-            //Handle null values
-            if($found_bathroom->getUnisex == null)
-            {
-                $found_bathroom->setUnisex == 'No Data';
-            }
-            if($found_bathroom->getKey_required == null)
-            {
-                $found_bathroom->setKey_required == 'No Data';
-            }
-            if($found_bathroom->getPublic == null)
-            {
-                $found_bathroom->setPublic == 'No Data';
-            }
-            if($found_bathroom->getHandicap == null)
-            {
-                $found_bathroom->setHandicap == 'No Data';
-            }
-            if($found_bathroom->getChangingTable == null)
-            {
-                $found_bathroom->setChangingTable == 'No Data';
-            }
+            //DESTROY!!!!!!
+            $bathroom->delete();
+            $marker->delete();
 
-            return $app['twig']->render('admin_bathroom.html.twig', array('bathroom' => $found_bathroom, 'marker' => Marker::find($id)));
+            return $app['twig']->render('admin.html.twig', array('bathrooms' => Bathroom::getAll(), 'markers' => Marker::getAll()));
+
         });
 
 

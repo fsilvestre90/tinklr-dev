@@ -98,7 +98,6 @@
 		function delete()
         {
             $GLOBALS['DB']->exec("DELETE FROM markers WHERE id = {$this->getId()};");
-            // $GLOBALS['DB']->exec("DELETE FROM bathrooms_markers WHERE marker_id = {$this->getId()};");
         }
 
 		static function getAll()
